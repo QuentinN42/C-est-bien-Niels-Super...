@@ -2,13 +2,13 @@ CestBienNiels
 
 Ah.
 
-Les données :
-Elles contiennent des points d'XP pour 100 étudiants de l'Institut dans 4 thèmes différents d'une UE de mathématiques.
+Les donnï¿½es :
+Elles contiennent des points d'XP pour 100 ï¿½tudiants de l'Institut dans 4 thï¿½mes diffï¿½rents d'une UE de mathï¿½matiques.
 
-Les données dans le fichier .csv sont de la forme suivante :
+Les donnï¿½es dans le fichier .csv sont de la forme suivante :
 
-La première ligne contient Les plafonds d'XP pour chaque thème, ainsi que l'entête de la dernière colonne ('Validation').
-Chacune des 100 lignes suivantes représente les données d'un étudiant, c'est-à-dire les XP obtenus dans chaque thème ainsi que le nombre 1 ou 0 qui correspond au fait que l'étudiant a validé ou non l'UE.
+La premiï¿½re ligne contient Les plafonds d'XP pour chaque thï¿½me, ainsi que l'entï¿½te de la derniï¿½re colonne ('Validation').
+Chacune des 100 lignes suivantes reprï¿½sente les donnï¿½es d'un ï¿½tudiant, c'est-ï¿½-dire les XP obtenus dans chaque thï¿½me ainsi que le nombre 1 ou 0 qui correspond au fait que l'ï¿½tudiant a validï¿½ ou non l'UE.
 
 
 A faire :
@@ -44,7 +44,7 @@ Idees suplementaires :
 
 Quentin: 
 
-
+ID eleves +data ?
 
 
 
@@ -54,7 +54,7 @@ Quentin:
 
 Mickael:
 
-fonction relatives à la moyenne 
+fonction relatives ï¿½ la moyenne 
 
 
 
@@ -63,5 +63,4 @@ fonction relatives à la moyenne
 
 Matthieu:
 
- J'essaie d'associer id - eleves
-
+Trie par classement par theme
