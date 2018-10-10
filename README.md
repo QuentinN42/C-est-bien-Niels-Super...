@@ -15,10 +15,10 @@ A faire :
 - donner des ID a chaque eleve
 - Trier par classement (leaderboard) par theme
 	Stat par theme et generale par eleve et au total --> plot
-- moyenne
+- moyenne FAIT
 - mediane
-- 1/3 eme quartile
-- ecart type
+- 1/3 eme quartile ---> pas ouf
+- ecart type FAIT
 
 - % d'admission
 - plot XP
@@ -53,8 +53,8 @@ Quentin:
 
 
 Mickael:
-
-fonction relatives à la moyenne 
+moyenne FAIT 
+ecart type FAIT
 
 
 
