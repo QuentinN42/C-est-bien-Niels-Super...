@@ -63,4 +63,5 @@ fonction relatives à la moyenne
 
 Matthieu:
 
+ J'essaie d'associer id - eleves
 
