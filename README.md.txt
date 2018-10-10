@@ -55,7 +55,11 @@ ID eleves +data ?
 Mickael:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
  moyenne 
+=======
+fonction relatives � la moyenne 
+>>>>>>> a6b8eb28dc0d7a2897a8bf1268d4269c22b6db86
 
  ecart type
 =======
@@ -67,6 +71,9 @@ fonction relatives � la moyenne
 
 
 
+<<<<<<< HEAD
 Matthieu:
 
+=======
+>>>>>>> a6b8eb28dc0d7a2897a8bf1268d4269c22b6db86
 Trie par classement par theme
