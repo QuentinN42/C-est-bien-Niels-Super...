@@ -16,8 +16,8 @@ A faire :
 - Trier par classement (leaderboard) par theme
 	Stat par theme et generale par eleve et au total --> plot
 - moyenne FAIT
-- mediane
-- 1/3 eme quartile ---> pas ouf
+- mediane FAIT
+- 1/3 eme quartile ---> FAIT
 - ecart type FAIT
 
 - % d'admission
@@ -55,6 +55,7 @@ Quentin:
 Mickael:
 moyenne FAIT 
 ecart type FAIT
+Quartiles et médianes FAIT
 
 
 
