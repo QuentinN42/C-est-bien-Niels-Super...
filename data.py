@@ -14,7 +14,7 @@ import csv
 #-------------------------------------------------------------------------------
 
 data = list(csv.reader(open('./donnee.txt', 'r')))
-
+prenoms = open('./Prenoms.txt', 'r').read().split("\n")
 #-------------------------------------------------------------------------------
 # supression entete dans les donnees + formatage xp maximum par UE
 
