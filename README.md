@@ -12,16 +12,6 @@ Chacune des 100 lignes suivantes reprï¿½sente les donnï¿½es d'un ï¿½tudiant, c'e
 
 
 A faire :
-<<<<<<< HEAD
-- donner des ID a chaque eleve
-- Trier par classement (leaderboard) par theme
-	Stat par theme et generale par eleve et au total --> plot
-- moyenne FAIT
-- mediane FAIT
-- 1/3 eme quartile ---> FAIT
-- ecart type FAIT
-=======
->>>>>>> 5f41fad9d6bd521f50ba2d72cc8d4ab22acae190
 
 - plot XP
 
@@ -59,13 +49,6 @@ Quentin:
 
 
 Mickael:
-<<<<<<< HEAD
-moyenne FAIT 
-ecart type FAIT
-Quartiles et médianes FAIT
-
-=======
->>>>>>> 5f41fad9d6bd521f50ba2d72cc8d4ab22acae190
 
 	Stat par theme et generale par eleve et au total --> plot
 - mediane
