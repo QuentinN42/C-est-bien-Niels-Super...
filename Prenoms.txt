@@ -19,7 +19,11 @@ Quentreize
 Quentorze
 Quentinze
 Guy Gnol 
+<<<<<<< HEAD
 Djemila Table
+=======
+Djémila Table
+>>>>>>> master
 Alain Firmerie
 Clea Molette
 Charles Atan    
@@ -40,6 +44,7 @@ Carrie Bout
 Clement Tine
 Ada Dha
 Harry Vederchy
+<<<<<<< HEAD
 Falastur : seigneur des cotes
 Herendil : ami de la fortune
 Galadriel         
@@ -50,6 +55,18 @@ Loubard : fils du crépuscule
 Le chasseur
 Le nain 
 L elfe 
+=======
+Falastur : seigneur des côtes
+Herendil : ami de la fortune
+Galadriel         
+Finduilas
+Vása : le dévoreur
+Viktwar : la daleuse
+Lómion : fils du crépuscule
+Le chasseur
+Le nain 
+L'elfe 
+>>>>>>> master
 La magicienne
 Le voleur
 Le barbare
@@ -67,15 +84,26 @@ Le voisin
 Le proff de maths
 Un américain
 Robert Laffon
+<<<<<<< HEAD
 Cunegonde
+=======
+Cunégonde
+>>>>>>> master
 Ping
 Pong
 Premier frere de Ping
 Deuxieme frere de Ping
+<<<<<<< HEAD
 Troisieme frere de Ping
 Quatrieme frere de Ping
 Cinquieme frere de Ping
 Defunte mere de Ping
+=======
+Troisième frere de Ping
+Quatrième frere de Ping
+Cinquième frere de Ping
+Défunte mère de Ping
+>>>>>>> master
 Le mec en STAPS
 Le roi Arthur
 Alexandre Astier

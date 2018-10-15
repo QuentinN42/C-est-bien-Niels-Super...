@@ -5,6 +5,7 @@ XP      : tableau 2D    : XP par eleve          : [[e1,xp11,xp12,...],[e2,xp21,x
 XPt     : tableau 2D    : XP total par eleve    : [[e1,xp11+xp12+...],[e2,xp21+xp22+...],...]
 XPi     : tableau 2D    : XP par UE par eleve   : [[e1,xpi1],[e2,xpi2],...]
 Valide  : tableau 1D    : True/False si validé  : [True,True,False,...]
+Prenom  : tableau 1D    : nom des eleves        : ["pierre","bla","bli",...]
 
 """
 # imports ----------------------------------------------------------------------
