@@ -1,5 +1,6 @@
 import csv
 import numpy as np
+import data as dt
 with open('./donnee.txt', 'r') as f:
     reader = csv.reader(f)
     donnees = list(reader)
