@@ -1,5 +1,5 @@
-
-
+# -*- coding: utf-8 -*-
+import matplotlib.pyplot as plt
 
 def nbadmis(v):
     #renvois le nombres d'admis
@@ -17,6 +17,21 @@ def nbaudessus(xps,pallier):
             nb += 1
     return nb
 
+def pieChart(notes):
+    labels = ["UE" + str(1+i) for i in range(len(notes))]
+    colors = ['yellowgreen', 'gold', 'lightskyblue', 'lightcoral']
+
+    plt.pie(notes, labels=labels, colors=colors,
+            autopct='%1.1f%%', shadow=True, startangle=90)
+
+    plt.axis('equal')
+    # plt.savefig('PieChart01.png')
+    plt.show()
+    plt.close()
+
+
+
+
 if __name__ == "__main__":
-    from data import XPt as xp
-    print(nbaudessus([e[1] for e in xp],250))
+    from data import XP as xp
+    pieChart([e[1:] for e in xp][2])

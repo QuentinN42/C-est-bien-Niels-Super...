@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 
 MaxXP   : tableau 1D    : XP maximum par UE     : [max1,max2,...]
@@ -15,7 +16,8 @@ import csv
 #-------------------------------------------------------------------------------
 
 data = list(csv.reader(open('./donnee.txt', 'r')))
-prenoms = open('./Prenoms.txt', 'r').read().split("\n")
+#prenoms = open('./Prenoms.txt', 'r').read().split("\n")
+
 #-------------------------------------------------------------------------------
 # supression entete dans les donnees + formatage xp maximum par UE
 
