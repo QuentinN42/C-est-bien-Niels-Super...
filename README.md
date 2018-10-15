@@ -13,7 +13,6 @@ Chacune des 100 lignes suivantes repr�sente les donn�es d'un �tudiant, c'e
 
 A faire :
 
-- plot XP
 
 
 
@@ -57,6 +56,7 @@ Mickael:
 - 1/3 eme quartile
 
 
+- plot XP
 
 
 Matthieu:
