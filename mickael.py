@@ -22,4 +22,4 @@ def ecart_type(l):
 
 print(ecart_type([5,6,7,2,1,9,8,7,5,2,3,2,8]))
 
-def quartiles(l):
+
