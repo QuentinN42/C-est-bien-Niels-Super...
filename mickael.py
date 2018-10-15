@@ -94,18 +94,18 @@ def G_alldata(xp):
 
 #Xp total par élève dans l'ordre croissant
 
-def G_xptot(xpt):
-    New_xpt=[xpt[i][1] for i in range(len(xpt))]
-    New_xpt.sort()
-    x = [i for i in range(len(xpt))]
-    y = New_xpt
+def G_xptot(xpt,prenoms):
+    l=sorted(xpt, key=lambda x : x[1])
+    print(l)
+    x = ['e' + str(l[i][0]) for i in range(len(xpt))]
+    y = [l[i][1] for i in range(len(xpt))]
     fig = plt.figure()
     ax = fig.add_subplot(111)
 
     ax.set_xlabel('élève ')
     ax.set_ylabel(' XP ')
 
-    plt.plot(x, y, '+r')
+    plt.plot(x,y, '+r')
     plt.show()
     plt.close()
 
@@ -116,6 +116,6 @@ def G_xptot(xpt):
 if __name__ == "__main__":
     import data as dt
     #G_alldata(dt.XP)
-    G_xptot(dt.XPt)
+    G_xptot(dt.XPt,dt.prenoms)
 
 
