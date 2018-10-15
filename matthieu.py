@@ -14,9 +14,9 @@ def clasmt_thm(l,n):
         colonne_trie.append([liste[n]])
     for i in range(len(colonne_trie)):
         colonne_trie[i].append(i)
-    colonne_trie.sort()
+    colonne_trie.sort()  # <=> sort(reversed = True) pour trier a l'envers
     colonne_trie = colonne_trie[::-1]
     
-    print (colonne_trie)
+    print (colonne_trie) # return plutot que print()
     
 print(clasmt_thm(donnees,0))
