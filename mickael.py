@@ -1,13 +1,12 @@
 import csv
 import numpy as np
-import data as dt
 import matplotlib.pyplot as plt
 
 L = list(csv.reader(open('./donnee.txt', 'r')))
 l_test =[5,6,7,2,1,9,8,7,5,2,3,2,8]
 
 l_test.sort(reverse=True)
-print(l_test)
+#print(l_test)
 
 
 
@@ -22,6 +21,10 @@ ax.set_xlabel(' ---- ' )
 ax.set_ylabel(' ----- ')
 
 plt.plot(x,y, '+r')
+
+
+plt.show()
+plt.close()
 '''
 
 
@@ -62,17 +65,57 @@ def quartiles(l): #renvoie un triplet de la forme (1er quartile, médiane, 3ièm
 
 #nombre d'xp par ue /eleve:
 
-def G_nb_XP(nom):
+def G_nb_XP(nom,xp,prenoms):
     x = ['t1','t2','t3','t4']
-    y = dt.XP[dt.prenoms.index(nom)].remove(dt.prenoms.index(nom))
+    y = xp[prenoms.index(nom)][1:]
     fig = plt.figure()
     ax = fig.add_subplot(111)
 
-    ax.set_xlabel('UE ')
+    ax.set_xlabel('thème ')
     ax.set_ylabel(' XP ')
 
     plt.plot(x, y, '+r')
+    plt.show()
+    plt.close()
+
+#L'xp par élèves sur chaque ue
+
+def G_alldata(xp):
+    y = [i[1:] for i in xp]
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    ax.set_xlabel('thème ')
+    ax.set_ylabel(' XP ')
+    for i in range(len(xp)):
+        plt.plot(['t1', 't2', 't3', 't4'], y[i], '+')
+    plt.show()
+    plt.close()
+
+#Xp total par élève dans l'ordre croissant
+
+def G_xptot(xpt):
+    New_xpt=[xpt[i][1] for i in range(len(xpt))]
+    New_xpt.sort()
+    x = [i for i in range(len(xpt))]
+    y = New_xpt
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+
+    ax.set_xlabel('élève ')
+    ax.set_ylabel(' XP ')
+
+    plt.plot(x, y, '+r')
+    plt.show()
+    plt.close()
 
 
+
+
+
+if __name__ == "__main__":
+    import data as dt
+    #G_alldata(dt.XP)
+    G_xptot(dt.XPt)
 
 
