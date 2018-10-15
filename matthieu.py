@@ -2,11 +2,7 @@
 import csv
 import numpy as np
 import data as dt
-<<<<<<< HEAD
-=======
 
-
->>>>>>> master
 with open('./donnee.txt', 'r') as f:
     reader = csv.reader(f)
     donnees = list(reader)
@@ -28,12 +24,8 @@ def clasmt_thm(l,n):
         colonne_trie[i].append(i)
     colonne_trie.sort()  # <=> sort(reversed = True) pour trier a l'envers
     colonne_trie = colonne_trie[::-1]
-<<<<<<< HEAD
-    
-    print (colonne_trie)
-    
-print(clasmt_thm(donnees,0))
-=======
+
+
 
     return colonne_trie # return plutot que print()
 
@@ -41,4 +33,20 @@ print(clasmt_thm(donnees,0))
 if __name__ == "__main__":
     # ne s'execute que si on lance ce script seul, pas si on l'importe
     print(clasmt_thm(donnees,0))
->>>>>>> master
+    
+    
+import matplotlib.pyplot as plt
+
+labels = 'Allemagne', 'France', 'Belgique', 'Espagne'
+sizes = [15, 80, 45, 40]
+colors = ['yellowgreen', 'gold', 'lightskyblue', 'lightcoral']
+
+plt.pie(sizes, labels=labels, colors=colors, 
+        autopct='%1.1f%%', shadow=True, startangle=90)
+
+plt.axis('equal')
+
+# plt.savefig('PieChart01.png')
+plt.show()
+
+
