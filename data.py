@@ -6,11 +6,16 @@ XP      : tableau 2D    : XP par eleve          : [[e1,xp11,xp12,...],[e2,xp21,x
 XPt     : tableau 2D    : XP total par eleve    : [[e1,xp11+xp12+...],[e2,xp21+xp22+...],...]
 XPi     : tableau 2D    : XP par UE par eleve   : [[e1,xpi1],[e2,xpi2],...]
 Valide  : tableau 1D    : True/False si validé  : [True,True,False,...]
-Prenom  : tableau 1D    : nom des eleves        : ["pierre","bla","bli",...]
+prenoms : tableau 1D    : nom des eleves        : ["pierre","bla","bli",...]
+note    : tableau 2D    : note /20 par eleves   : [12/20,10/20,....]
 
 """
 # imports ----------------------------------------------------------------------
 import csv
+
+with open('PrenomsRandom.txt', 'r') as f:
+    reader = csv.reader(f)
+    prenoms = [x[0] for x in list(reader)]
 
 
 #-------------------------------------------------------------------------------
@@ -42,6 +47,21 @@ XP2 = [[i,data[i][2]] for i in range(len(data))]
 XP3 = [[i,data[i][3]] for i in range(len(data))]
 XP4 = [[i,data[i][4]] for i in range(len(data))]
 
+
+
+#-------------------------------------------------------------------------------
+# creation de la note sur 20 de chaques étudiants
+note = []
+
+for i in range (len(data)):
+    tab = [XP[i][0]]
+    for j in range(3):
+        if XP[i][j+1] >= MaxXP[j]:
+            tab.append(20)
+        else:
+            tab.append(20*XP[i][j+1]/MaxXP[j])
+    note.append(tab)
+
 #-------------------------------------------------------------------------------
 # creation des validation de chaques etudiants
 
@@ -52,10 +72,12 @@ Valide = [True if data[i][-1] == 1 else False for i in range(len(data))]
 # affichage si le prg est executé seul (ne pas en tenir compte)
 
 if __name__ == "__main__":
+    print(MaxXP)
     for i in range(len(data)):
-        print(XPt[i])
+        print(XP[i],note[i])
         
         
-with open('PrenomsRandom.txt', 'r') as f:
-    reader = csv.reader(f)
-    prenoms = [x[0] for x in list(reader)]
+
+    
+    
+
