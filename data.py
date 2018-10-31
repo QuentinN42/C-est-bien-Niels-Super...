@@ -45,7 +45,7 @@ XP4 = [[i,data[i][4]] for i in range(len(data))]
 #-------------------------------------------------------------------------------
 # creation des validation de chaques etudiants
 
-valide = [True if data[i][-1] == 1 else False for i in range(len(data))]
+Valide = [True if data[i][-1] == 1 else False for i in range(len(data))]
 
 
 #-------------------------------------------------------------------------------

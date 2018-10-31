@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
@@ -10,7 +11,7 @@ l_test.sort(reverse=True)
 
 
 
-'''modèle graph : 
+'''modèle graph :
 x= [ --- ]
 y = [ --- ]
 
@@ -117,5 +118,3 @@ if __name__ == "__main__":
     import data as dt
     #G_alldata(dt.XP)
     G_xptot(dt.XPt,dt.prenoms)
-
-
