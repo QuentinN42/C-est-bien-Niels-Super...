@@ -30,21 +30,4 @@ def clasmt_thm(l,n):
     return colonne_trie # return plutot que print()
 
 
-if __name__ == "__main__":
-    # ne s'execute que si on lance ce script seul, pas si on l'importe
-    print(clasmt_thm(donnees,0))
 
-
-import matplotlib.pyplot as plt
-
-labels = 'Allemagne', 'France', 'Belgique', 'Espagne'
-sizes = [15, 80, 45, 40]
-colors = ['yellowgreen', 'gold', 'lightskyblue', 'lightcoral']
-
-plt.pie(sizes, labels=labels, colors=colors,
-        autopct='%1.1f%%', shadow=True, startangle=90)
-
-plt.axis('equal')
-
-# plt.savefig('PieChart01.png')
-plt.show()
