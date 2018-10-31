@@ -11,8 +11,8 @@ for i in range (100):
 # ecriture des notes / 20
 for i in range (100):
     with open('Data/'+str(i)+'/notes.txt', 'w') as f:
-        f.write(dt.note[i][1:])
-        
+        for e in dt.note[i][1:]:
+            f.write(str(e)+"\n")
         
         
         
@@ -20,4 +20,5 @@ for i in range (100):
 # ecriture des notes xp
 for i in range (100):
     with open('Data/'+str(i)+'/xps.txt', 'w') as f:
-        f.write(dt.XP[i][1:])
+        for e in dt.XP[i][1:]:
+            f.write(str(e)+"\n")

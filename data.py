@@ -55,7 +55,7 @@ note = []
 
 for i in range (len(data)):
     tab = [XP[i][0]]
-    for j in range(3):
+    for j in range(4):
         if XP[i][j+1] >= MaxXP[j]:
             tab.append(20)
         else:
