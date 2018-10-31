@@ -30,4 +30,6 @@ def clasmt_thm(l,n):
     return colonne_trie # return plutot que print()
 
 
-
+with open('PrenomsRandom.txt', 'r') as f:
+    reader = csv.reader(f)
+    prenoms = list(reader)
