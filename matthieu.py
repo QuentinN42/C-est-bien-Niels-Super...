@@ -33,3 +33,7 @@ def clasmt_thm(l,n):
 with open('PrenomsRandom.txt', 'r') as f:
     reader = csv.reader(f)
     prenoms = list(reader)
+
+
+
+    

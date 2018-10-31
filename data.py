@@ -58,4 +58,4 @@ if __name__ == "__main__":
         
 with open('PrenomsRandom.txt', 'r') as f:
     reader = csv.reader(f)
-    prenoms = list(reader)
+    prenoms = [x[0] for x in list(reader)]

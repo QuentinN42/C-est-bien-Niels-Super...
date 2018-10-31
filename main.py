@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
-import csv
 
+import data as dt
 
-Noms  = [x[0] for x in list(csv.reader(open('PrenomsRandom.txt', 'r')))]
-
-print(Noms)
-
-#for i in range(len(Noms))
+for i in range (100):
+    with open('Data/'+str(i)+'/prenom.txt', 'w') as f:
+        f.write(dt.prenoms[i])
