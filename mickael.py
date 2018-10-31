@@ -11,6 +11,7 @@ l_test.sort(reverse=True)
 
 
 
+
 '''modèle graph :
 x= [ --- ]
 y = [ --- ]
@@ -61,7 +62,7 @@ def quartiles(l): #renvoie un triplet de la forme (1er quartile, médiane, 3ièm
 
     return Q_1, Q_2, Q_3
 
-#                                         TENTATIVE DE GRAPH
+#                 TENTATIVE DE GRAPHS
 
 
 #nombre d'xp par ue /eleve:
@@ -79,17 +80,22 @@ def G_nb_XP(nom,xp,prenoms):
     plt.show()
     plt.close()
 
-#L'xp par élèves sur chaque ue
+#L'xp par eleves sur chaque ue
 
 def G_alldata(xp):
     y = [i[1:] for i in xp]
     fig = plt.figure()
     ax = fig.add_subplot(111)
-
+    xp_up = np.array(xp)
+    Q = np.array(list(map(quartiles, [xp_up[:,1], xp_up[:,2], xp_up[:,3], xp_up[:,4]])))
+    print(Q)
     ax.set_xlabel('theme ')
     ax.set_ylabel(' XP ')
-    for i in range(len(xp)):
-        plt.plot(['t1', 't2', 't3', 't4'], y[i], '+')
+    plt.plot(['t1', 't2', 't3', 't4'],Q[:,0], 'b^', markersize=10 )
+    plt.plot(['t1', 't2', 't3', 't4'],Q[:,1], 'ro', markersize=10 )  #   ajouter moyene :/
+    plt.plot(['t1', 't2', 't3', 't4'],Q[:,2], 'bv', markersize=10)
+    for u in range(len(xp)):
+        plt.plot(['t1', 't2', 't3', 't4'], y[u], 'k+')
     plt.show()
     plt.close()
 
@@ -116,6 +122,6 @@ def G_xptot(xpt,prenoms):
 
 if __name__ == "__main__":
     import data as dt
-    #G_alldata(dt.XP)
-    #G_xptot(dt.XPt,dt.Prenom)
     G_alldata(dt.XP)
+    #G_xptot(dt.XPt,dt.Prenom)
+
