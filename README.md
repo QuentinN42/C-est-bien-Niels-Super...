@@ -1,4 +1,4 @@
-CestBienNiels
+﻿CestBienNiels
 
 Ah.
 
@@ -49,7 +49,7 @@ Quentin:
 
 Mickael:
 
-	Stat par theme et generale par eleve et au total --> plot
+- plots generaux en cours 
 - mediane
 - moyenne
 - ecart type

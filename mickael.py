@@ -72,7 +72,7 @@ def G_nb_XP(nom,xp,prenoms):
     fig = plt.figure()
     ax = fig.add_subplot(111)
 
-    ax.set_xlabel('thème ')
+    ax.set_xlabel('theme ')
     ax.set_ylabel(' XP ')
 
     plt.plot(x, y, '+r')
@@ -86,7 +86,7 @@ def G_alldata(xp):
     fig = plt.figure()
     ax = fig.add_subplot(111)
 
-    ax.set_xlabel('thème ')
+    ax.set_xlabel('theme ')
     ax.set_ylabel(' XP ')
     for i in range(len(xp)):
         plt.plot(['t1', 't2', 't3', 't4'], y[i], '+')
@@ -98,12 +98,12 @@ def G_alldata(xp):
 def G_xptot(xpt,prenoms):
     l=sorted(xpt, key=lambda x : x[1])
     print(l)
-    x = ['e' + str(l[i][0]) for i in range(len(xpt))]
+    x = [str(l[i][0]) for i in range(len(xpt))]
     y = [l[i][1] for i in range(len(xpt))]
     fig = plt.figure()
     ax = fig.add_subplot(111)
 
-    ax.set_xlabel('élève ')
+    ax.set_xlabel('eleve ')
     ax.set_ylabel(' XP ')
 
     plt.plot(x,y, '+r')
@@ -117,4 +117,5 @@ def G_xptot(xpt,prenoms):
 if __name__ == "__main__":
     import data as dt
     #G_alldata(dt.XP)
-    G_xptot(dt.XPt,dt.prenoms)
+    #G_xptot(dt.XPt,dt.Prenom)
+    G_alldata(dt.XP)
