@@ -1,4 +1,4 @@
-Cinquieme frere de Ping
+﻿Cinquieme frere de Ping
 Falastur : seigneur des cotes
 Tony Fevrier
 Quentouze
@@ -69,7 +69,7 @@ Herobrine
 Niels Super
 Charles Atan
 Barry Le
-Le proff de maths
+Le prof de maths
 Le nain
 Azathoth
 Quentuit
