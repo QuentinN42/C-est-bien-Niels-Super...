@@ -54,3 +54,8 @@ Valide = [True if data[i][-1] == 1 else False for i in range(len(data))]
 if __name__ == "__main__":
     for i in range(len(data)):
         print(XPt[i])
+        
+        
+with open('PrenomsRandom.txt', 'r') as f:
+    reader = csv.reader(f)
+    prenoms = list(reader)
