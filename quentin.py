@@ -1,5 +1,35 @@
 # -*- coding: utf-8 -*-
 import matplotlib.pyplot as plt
+from mickael import ecart_type as et,moy
+from matthieu import clasmt_thm as trieMult
+
+"""
+def map(*arg):
+    return list(map(*arg))
+
+"""
+
+def tprint(T):
+    for e in T:
+        print(e)
+
+def zip(t):
+    return [[e[i] for e in t] for i in range(len(t[0]))]
+
+def removefirst(t):
+    return [x[1:]for x in t]
+
+def sommeNoteEtValide(v,I):
+    O = []
+    for i in range(len(I)):
+        O.append([v[i]]+I[i])
+    return O
+        
+
+def f(v,l):
+    #prend et formate la liste
+    return trieMult(sommeNoteEtValide(v,removefirst(l)),1,False)
+
 
 def nbadmis(v):
     #renvois le nombres d'admis
@@ -54,10 +84,87 @@ def pieChartNotes(notes): # graph des notes d'un etudiant
     plt.show()
     plt.close()
 
+def plotColor(v,D,l='XP'):
+    valide = []
+    nonvalide = []
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.set_xlim(-0.5,100.5)
+    ax.set_xlabel('N eleve')
+    ax.set_ylabel(l)
+    for i in range(len(v)):
+        if v[i]:
+            c = 'g'
+            valide.append(D[i])
+        else:
+            c = 'r'
+            nonvalide.append(D[i])
+        plt.plot(i,D[i], 'o'+c)
+    plt.plot([0,100],[max(nonvalide),max(nonvalide)], '--r')
+    plt.plot([0,100],[min(valide),min(valide)], '--g')
+    plt.show()
+    print(int(max(nonvalide)*100)/100," --- ",int(min(valide)*100)/100," |     Moyenne : ",moy(D))
+    plt.close()
 
+def pcz(L,l='XP'):
+    plotColor(zip(L)[0],zip(L)[1],l)
+
+def plotEcTColor(v,D,l='Ecart Type'):
+    valide = []
+    nonvalide = []
+    E = list(map(et,D))
+    M = list(map(moy,D))
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.set_xlim(-0.5,len(D)+0.5)
+    ax.set_xlabel('N eleve ')
+    ax.set_ylabel(l)
+    for i in range(len(v)):
+        if v[i]:
+            c = 'g'
+            valide.append(M[i])
+        else:
+            c = 'r'
+            nonvalide.append(M[i])
+        plt.plot(i,M[i], 'o'+c)
+        plt.plot([i,i],[M[i]-E[i],M[i]+E[i]], '-'+c)
+    plt.plot([0,100],[max(nonvalide),max(nonvalide)], '--r')
+    plt.plot([0,100],[min(valide),min(valide)], '--g')
+    plt.show()
+    print(max(nonvalide)," --- ",min(valide))
+    plt.close()
 
 
 if __name__ == "__main__":
-    from data import Valide as V,XP as xp
-    pieChartAdmis(V)
-    pieChartNotes(xp[2])
+    from data import Valide as V,XPt,note,notelog,noteinv,notecarre
+    
+    XPt = f(V,XPt)
+    note = f(V,note)
+    notelog = f(V,notelog)
+    noteinv = f(V,noteinv)
+    notecarre = f(V,notecarre)
+    
+    pcz(XPt,'XP')
+    pcz(note,'Modele Lineaire')
+    pcz(notelog,'Modele Log')
+    pcz(noteinv,'Modele Inverse')
+    pcz(notecarre,'Modele racine carré')
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

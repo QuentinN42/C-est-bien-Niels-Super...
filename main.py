@@ -22,3 +22,6 @@ for i in range (100):
     with open('Data/'+str(i)+'/xps.txt', 'w') as f:
         for e in dt.XP[i][1:]:
             f.write(str(e)+"\n")
+
+
+
