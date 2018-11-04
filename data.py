@@ -16,7 +16,7 @@ notecarre : tableau 2D    : note /20 par eleves modele sqrt    : [[e1,12],[e2,15
 """
 # imports ----------------------------------------------------------------------
 import csv
-from math import log,sqrt
+from math import log,sqrt,pow
 
 
 
@@ -69,34 +69,29 @@ for i in range(len(XP)):
 XPt = [[i]+[sum(XPmaxe[i][1:])] for i in range(len(data))]
 
 #-------------------------------------------------------------------------------
-# creation de la note sur 20 de chaques étudiants
-note = []
-notelog = []
-noteinv = []
-notecarre = []
+# creation des modeles
 
 
-for i in range (len(XP)):
-    tablin = [XP[i][0]]
-    tablog = [XP[i][0]]
-    tabinv = [XP[i][0]]
-    tabcarre = [XP[i][0]]
-    
-    #modele lineaire
-    tablin.append(20*XPt[i][1]/sum(MaxXP))
-    #modele log
-    tablog.append(10*log(XPt[i][1],20))
-    #modele 1/x
-    tabinv.append(116.36*XPt[i][1]/(1000+4*XPt[i][1]))
-    #modele carre
-    tabcarre.append(20/sqrt(550)*sqrt(XPt[i][1]))
-    
-    
-    
-    note.append(tablin)
-    notelog.append(tablog)
-    noteinv.append(tabinv)
-    notecarre.append(tabcarre)
+#modele lineaire
+mlin = lambda x : 20*x/sum(MaxXP)
+#modele log
+mlog = lambda x : 20 / log(5,2)*log(4 / 450 * x + 1,2) #5*(x + sum(MaxXP) / 4) / (5*sum(MaxXP)/4)
+
+#modele 1/x
+minv = lambda x : 116.36*x/(1000 + 4*x)
+
+#modele carre
+mcarre = lambda x : 20*pow(x/sum(MaxXP),0.55)
+
+
+#-------------------------------------------------------------------------------
+# creation de la note sur 20 de chaques étudiants en fonction des modeles
+
+
+note = [[e[0],mlin(e[1])]for e in XPt]
+notelog = [[e[0],mlog(e[1])]for e in XPt]
+noteinv = [[e[0],minv(e[1])]for e in XPt]
+notecarre = [[e[0],mcarre(e[1])]for e in XPt]
 
 
 
@@ -110,11 +105,9 @@ Valide = [True if data[i][-1] == 1 else False for i in range(len(data))]
 # affichage si le prg est executé seul (ne pas en tenir compte)
 
 if __name__ == "__main__":
-    print(MaxXP)
-    for i in range(len(data)):
-        print(XPmaxe[i])
-        
-        
+    print("")
+    
+    
 
     
     
