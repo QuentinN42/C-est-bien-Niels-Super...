@@ -14,5 +14,5 @@ function changeHeight()
 
 function hidemain()
 {
-    document.getElementById(ID).style.display = "None";
+    document.getElementById("main").style.display = "none";
 }
