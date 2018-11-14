@@ -1,32 +1,20 @@
-html body {
+html
+{
 	height: 100%;
     font-size: 18px;
 	font-family: "Monotype Corsiva", Times, serif;
 }
 
 
-
-*{
-	margin: 0;
-	padding: 0;
+body
+{
+    background-size: 100%;
+    background-origin: content;
+    background-repeat: no-repeat;
 }
 
-
-
-.main {
-	overflow:hidden;
-	/* text */
-	position: relative;
-    text-align: center;
-    color: white;
-}
-
-.bg{
-	width: 100%;
-}
-
-
-.title{
+.title
+{
 	background-color: rgb(0,0,0); /* Fallback color */
   	background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
   	color: white;
@@ -40,16 +28,4 @@ html body {
 	width: 80%;
 	padding: 20px;
 	text-align: center;
-}
-
-
-
-
-
-.content{
-
-
-	margin: 10%;
-
-
 }
