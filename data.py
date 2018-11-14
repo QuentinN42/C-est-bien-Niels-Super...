@@ -47,10 +47,10 @@ data = [list(map(lambda x: int(float(x)),d)) for d in data]
 
 XP = [[i] + data[i][:-1] for i in range(len(data))]
 
-XP1 = [[i,data[i][1]] for i in range(len(data))]
-XP2 = [[i,data[i][2]] for i in range(len(data))]
-XP3 = [[i,data[i][3]] for i in range(len(data))]
-XP4 = [[i,data[i][4]] for i in range(len(data))]
+XP1 = [[i,data[i][0]] for i in range(len(data))]
+XP2 = [[i,data[i][1]] for i in range(len(data))]
+XP3 = [[i,data[i][2]] for i in range(len(data))]
+XP4 = [[i,data[i][3]] for i in range(len(data))]
 
 #-------------------------------------------------------------------------------
 # maxing des etudiants
@@ -68,6 +68,12 @@ for i in range(len(XP)):
 
 XPt = [[i]+[sum(XPmaxe[i][1:])] for i in range(len(data))]
 
+
+
+XPm1 = [[i,XPmaxe[i][1]] for i in range(len(data))]
+XPm2 = [[i,XPmaxe[i][2]] for i in range(len(data))]
+XPm3 = [[i,XPmaxe[i][3]] for i in range(len(data))]
+XPm4 = [[i,XPmaxe[i][4]] for i in range(len(data))]
 #-------------------------------------------------------------------------------
 # creation des modeles
 

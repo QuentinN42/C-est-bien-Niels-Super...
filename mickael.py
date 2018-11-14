@@ -2,6 +2,7 @@
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 
 L = list(csv.reader(open('./donnee.txt', 'r')))
 l_test =[5,6,7,2,1,9,8,7,5,2,3,2,8]
@@ -28,8 +29,10 @@ plt.plot(x,y, '+r')
 plt.show()
 plt.close()
 '''
+#                                               FONCTIONS UTILES
 
-
+def column(matrix, i):
+    return [row[i] for row in matrix]
 #                                              STATISTIQUES
 
 
@@ -70,14 +73,28 @@ def quartiles(l): #renvoie un triplet de la forme (1er quartile, médiane, 3ièm
 def G_nb_XP(nom,xp,prenoms):
     x = ['t1','t2','t3','t4']
     y = xp[prenoms.index(nom)][1:]
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
+    y_max = dt.XPmaxe[prenoms.index(nom)][1:]
+    M1=moy(column(dt.XP1,1))
+    M2=moy(column(dt.XP2,1))
+    M3=moy(column(dt.XP3,1))
+    M4=moy(column(dt.XP4,1))
 
+    fig = plt.figure()
+    blue_patch = mpatches.Patch(color='blue', label='legal points')
+    black_patch = mpatches.Patch(color='black', label='overkill points')
+    ax = fig.add_subplot(111)
     ax.set_xlabel('theme ')
     ax.set_ylabel(' XP ')
+    plt.legend(handles=[blue_patch,black_patch])
+    plt.bar(x,y,color='k')
+    plt.bar(x,y_max,color='b')
+    plt.plot(x, [50,100,100,200], 'rv', markersize=10)
+    plt.plot(x,[M1,M2,M3,M4], 'r_', markersize=40)
 
-    plt.plot(x, y, '+r')
-    plt.show()
+
+
+    plt.savefig('./Data/' + str(prenoms.index(nom)) + '/hist.png')
+    #plt.show()
     plt.close()
 
 #L'xp par eleves sur chaque ue
@@ -122,6 +139,10 @@ def G_xptot(xpt,prenoms):
 
 if __name__ == "__main__":
     import data as dt
-    G_alldata(dt.XP)
+    #G_alldata(dt.XP)
     #G_xptot(dt.XPt,dt.Prenom)
+    for i in dt.prenoms:
+        G_nb_XP(i, dt.XP, dt.prenoms)
+
+
 
