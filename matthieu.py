@@ -14,7 +14,7 @@ LALALA = [[1,2,3,6,5],[25,1,4,3,4],[52,665,32,3,8]]
 
 
 
-def clasmt_thm(l,n):
+def clasmt_thm(l,n,r=True):
     # trie un tableau l par raport a la collone n
     # on extrait d'abord la n-ieme colonne
     colonne_trie = []
@@ -22,12 +22,13 @@ def clasmt_thm(l,n):
         colonne_trie.append([liste[n]])
     for i in range(len(colonne_trie)):
         colonne_trie[i].append(i)
-    colonne_trie.sort()  # <=> sort(reversed = True) pour trier a l'envers
-    colonne_trie = colonne_trie[::-1]
+    colonne_trie.sort(reverse = r)  # <=> sort(reversed = True) pour trier a l'envers
+    #colonne_trie = colonne_trie[::-1]
+    O = []
+    for c in colonne_trie:
+        O.append(l[c[1]])
 
-
-
-    return colonne_trie # return plutot que print()
+    return O # return plutot que print()
 
 
 with open('PrenomsRandom.txt', 'r') as f:

@@ -1,5 +1,54 @@
 # -*- coding: utf-8 -*-
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib.colors import to_hex
+from mickael import ecart_type as et,quartiles as Q,moy
+from matthieu import clasmt_thm as trieMult
+
+"""
+def map(*arg):
+    return list(map(*arg))
+
+"""
+
+
+
+
+
+
+#-------------------------------------------------------------------------------
+
+read = lambda x: int(100*x)/100
+
+def tprint(T):
+    for e in T:
+        print(e)
+
+def zip(t):
+    return [[e[i] for e in t] for i in range(len(t[0]))]
+
+
+
+def removefirst(t):
+    return [x[1:]for x in t]
+
+
+#-------------------------------------------------------------------------------
+
+
+def sommeNoteEtValide(v,I):
+    O = []
+    for i in range(len(I)):
+        O.append([v[i]]+I[i])
+    return O
+        
+
+#-------------------------------------------------------------------------------
+
+def f(v,l):
+    #prend et formate la liste
+    return trieMult(sommeNoteEtValide(v,removefirst(l)),1,False)
+
 
 def nbadmis(v):
     #renvois le nombres d'admis
@@ -27,6 +76,11 @@ def nbaudessus(xps,pallier):
         if xp >= pallier:
             nb += 1
     return nb
+
+
+
+#-------------------------------------------------------------------------------
+
 
 
 def pieChartAdmis(v): # graph des etudiants admis/non admis
@@ -57,7 +111,154 @@ def pieChartNotes(notes): # graph des notes d'un etudiant
 
 
 
+#-------------------------------------------------------------------------------
+
+
+
+
+
+def someinfo(D):
+    print("Moyenne          : ",read(moy(D)))
+    print("Ecart type       : ",read(et(D)))
+    print("Min / Max        : ",read(min(D))," --- ",read(max(D)))
+    print("Q1 / M / Q3      : ",tuple(map(read,Q(D))))
+
+
+
+def plotColor(v,D,l='XP',text=True):
+    valide = []
+    nonvalide = []
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.set_xlim(-0.5,100.5)
+    ax.set_xlabel('N eleve')
+    ax.set_ylabel(l)
+    for i in range(len(v)):
+        if v[i]:
+            c = 'g'
+            valide.append(D[i])
+        else:
+            c = 'r'
+            nonvalide.append(D[i])
+        plt.plot(i,D[i], 'o'+c)
+    plt.plot([0,100],[max(nonvalide),max(nonvalide)], '--r')
+    plt.plot([0,100],[min(valide),min(valide)], '--g')
+    plt.plot([0,100],[10,10], '--b')
+    plt.show()
+    if text:
+        print("Echec / Reussite : ",read(max(nonvalide))," --- ",read(min(valide)))
+        someinfo(D)
+    plt.close()
+
+
+def plotEcTColor(v,D,l='Ecart Type',text=True):
+    valide = []
+    nonvalide = []
+    E = list(map(et,D))
+    M = list(map(moy,D))
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.set_xlim(-0.5,len(D)+0.5)
+    ax.set_xlabel('N eleve ')
+    ax.set_ylabel(l)
+    for i in range(len(v)):
+        if v[i]:
+            c = 'g'
+            valide.append(M[i])
+        else:
+            c = 'r'
+            nonvalide.append(M[i])
+        plt.plot(i,M[i], 'o'+c)
+        plt.plot([i,i],[M[i]-E[i],M[i]+E[i]], '-'+c)
+    plt.plot([0,100],[max(nonvalide),max(nonvalide)], '--r')
+    plt.plot([0,100],[min(valide),min(valide)], '--g')
+    plt.plot([0,100],[10,10], '--b')
+    plt.show()
+    if text:
+        print(max(nonvalide)," --- ",min(valide))
+    plt.close()
+
+
+def pcz(L,l='XP',text=True):
+    plotColor(zip(L)[0],zip(L)[1],l,text)
+
+
+
+
+#-------------------------------------------------------------------------------
+
+
+
+
+def plot3d(v,l,C):
+    fig = plt.figure()
+    ax = Axes3D(fig)
+    
+    x = [e[0] for e in l]
+    y = [e[1] for e in l]
+    z = [e[2] for e in l]
+    
+    c = [to_hex((1-(e-min(C))/(max(C)-min(C)),(e-min(C))/(max(C)-min(C)),0)) for e in C]
+    
+    nrx = [x[i] for i in range(len(l)) if v[i] is not True]
+    nry = [y[i] for i in range(len(l)) if v[i] is not True]
+    nrz = [z[i] for i in range(len(l)) if v[i] is not True]
+    nrC = [C[i] for i in range(len(c)) if v[i] is not True]
+    nrc = [to_hex((1-(e-min(nrC))/(max(nrC)-min(nrC)),(e-min(nrC))/(max(nrC)-min(nrC)),0)) for e in nrC]
+    
+    for i in range(len(v)):
+        if v[i]:
+            f = 'o'
+        else:
+            f = '^'
+        ax.plot([x[i]], [y[i]], [z[i]], f, color = c[i])
+    
+    plt.show()
+    plt.close()
+    
+    fig = plt.figure()
+    ax = Axes3D(fig)
+    
+    for i in range(len(nrc)):
+        ax.plot([nrx[i]], [nry[i]], [nrz[i]], '^', color = nrc[i])
+    
+    plt.show()
+    plt.close()
+
+
+#-------------------------------------------------------------------------------
+
+
+
+
+
 if __name__ == "__main__":
-    from data import Valide as V,XP as xp
-    pieChartAdmis(V)
-    pieChartNotes(xp[2])
+    from data import Valide as V,XPt,note,notelog,noteinv,notecarre,XPmaxe
+    
+    XPt = f(V,XPt)
+    note = f(V,note)
+    notelog = f(V,notelog)
+    noteinv = f(V,noteinv)
+    notecarre = f(V,notecarre)
+    
+    """
+    pcz(XPt,'XP',False)
+    pcz(note,'Modele Lineaire',False)
+    pcz(notelog,'Modele Log',False)
+    pcz(noteinv,'Modele Inverse',False)
+    """
+    
+    
+    #pcz(notecarre,'Modele racine carré')
+    
+    
+    """
+    someinfo(zip(note)[1])
+    someinfo(zip(notelog)[1])
+    someinfo(zip(noteinv)[1])
+    someinfo(zip(notecarre)[1])
+    """
+    
+    plot3d(V,removefirst(XPmaxe),[e[3] for e in XPmaxe])
+    
+    
