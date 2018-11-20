@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
+session_start();
 
 $l = $_POST["login"];
 $p = $_POST["password"];
@@ -20,6 +21,7 @@ for($i = 0; $i < 100; ++$i)
 		fclose($f);
 		if($h == $H)
 		{
+			$_SESSION["eleve"] = $i;
 			header("Location: notes.php");
 			die();
 		}

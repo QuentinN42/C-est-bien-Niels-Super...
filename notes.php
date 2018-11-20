@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
 <?php
-if(isset($_GET["n"]))
+session_start();
+
+
+if(isset($_SESSION["eleve"]))
 {
-    $n = $_GET["n"];
+    $n = $_SESSION["eleve"];
 }
 else
 {
-    $n = 0;
+    header("Location: index.php");
+    die();
 }
 $l = "Data/" . $n;
 $s = "Data/Settings/";
@@ -94,10 +98,10 @@ fclose($fnbrcontroles);
 
     <head>
 		<link rel="shortcut icon" type="image/png" href="img/logo.png"/>
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="notes.css">
 		<meta http-equiv= "content-type" content= "text/html; charset=UTF-8" >
         <title> Institut Villebon Charpak </title>
-        <script src="index.js"></script>
+        <script src="notes.js"></script>
     </head>
 
     <body onresize="changeHeight()" onload="changeHeight()" onscroll="hidemain()">
@@ -127,7 +131,7 @@ fclose($fnbrcontroles);
                 Votre note est pour l'instant de : <?php echo $note; ?> /20. <br>
                 Il reste normalement encore <?php echo $nbrcontroles; ?> contrôles pour augmenter votre note. <br>
             </p>
-            
+
             <br><br>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
