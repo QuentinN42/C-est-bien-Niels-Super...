@@ -2,7 +2,7 @@
 
 import data as dt
 from matthieu import clasmt_thm as trieMult
-
+from random import randint as rd,choice as chx
 
 rangs = [e[0] for e in trieMult(dt.note,1)]
 
@@ -52,8 +52,11 @@ for i in range (100):
         w = ""
         for j in [1,2,3,4]:
             if dt.XP[i][j] < dt.MaxXP[j-1]/2:
-                w += "Work harder on thème  " + str(j) + " ! \n"
-                
+                w += "Work harder on thème  " + str(j) + " ! <br> \n"
+                w += chx([c.replace("\n","<br>") for c in open("citations de game_over.txt",'r').read().split("#\n")]).format(NAME = dt.prenoms[i])
+                w += " <br> \n"
+            elif dt.XP[i][j] > dt.MaxXP[j-1]:
+                w += "Décidément, le thème " + str(j) + " n’as plus aucun mystères pour toi ! <big>OVERKILL</big>"
         f.write(w)
     
     
