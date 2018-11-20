@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+    # -*- coding: utf-8 -*-
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.colors import to_hex
@@ -235,11 +235,14 @@ def plot3d(v,l,C):
 if __name__ == "__main__":
     from data import Valide as V,XPt,note,notelog,noteinv,notecarre,XPmaxe
     
+    
     XPt = f(V,XPt)
     note = f(V,note)
     notelog = f(V,notelog)
     noteinv = f(V,noteinv)
     notecarre = f(V,notecarre)
+    
+    
     
     """
     pcz(XPt,'XP',False)
