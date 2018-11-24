@@ -3,33 +3,40 @@
 <?php
 session_start();
 
-$l = $_POST["login"];
-$p = $_POST["password"];
-$h = hash("sha256",$p);
-
-
-
-
-for($i = 0; $i < 100; ++$i)
+if(isset($_POST["login"]))
 {
-	$e = "eleve" . (string)$i;
-	if($l == $e)
+	$l = $_POST["login"];
+	$p = $_POST["password"];
+	$h = hash("sha256",$p);
+	for($i = 0; $i < 100; ++$i)
 	{
-		$l = "pass/" . $e . ".txt";
-		$f = fopen($l, "r");
-		$H = fread($f,filesize($l));
-		fclose($f);
-		if($h == $H)
+		$e = "eleve" . (string)$i;
+		if($l == $e)
 		{
-			$_SESSION["eleve"] = $i;
-			header("Location: notes.php");
-			die();
+			$l = "pass/" . $e . ".txt";
+			$f = fopen($l, "r");
+			$H = fread($f,filesize($l));
+			fclose($f);
+			if($h == $H)
+			{
+				$_SESSION["eleve"] = $i;
+				header("Location: notes.php");
+				die();
+			}
 		}
 	}
+	$m = "<h3>Wrong login or password</h3>";
+}
+else
+{
+	$m = "<br>";
 }
 
 
 
+/*
+<?php echo $l . " / " . $p . " / " . $h ?>
+*/
 ?>
 
 
@@ -45,7 +52,7 @@ for($i = 0; $i < 100; ++$i)
 
     <body background="img/bg.jpg">
         <div class="title">
-			<br>
+			<?php echo $m ?>
             <form class="" action="index.php" method="post">
                 Login :
                 <input type="text" name="login">
@@ -55,7 +62,6 @@ for($i = 0; $i < 100; ++$i)
 				<br>
 				<input type="submit" value="Se connecter">
             </form>
-			<?php echo $l . " / " . $p . " / " . $h ?>
         </div>
     </body>
 </html>

@@ -16,7 +16,7 @@ def map(*arg):
 
 
 
-#-------------------------------------------------------------------------------
+#%%
 
 read = lambda x: int(100*x)/100
 
@@ -33,7 +33,7 @@ def removefirst(t):
     return [x[1:]for x in t]
 
 
-#-------------------------------------------------------------------------------
+#%%
 
 
 def sommeNoteEtValide(v,I):
@@ -43,7 +43,7 @@ def sommeNoteEtValide(v,I):
     return O
         
 
-#-------------------------------------------------------------------------------
+#%%
 
 def f(v,l):
     #prend et formate la liste
@@ -79,7 +79,7 @@ def nbaudessus(xps,pallier):
 
 
 
-#-------------------------------------------------------------------------------
+#%%
 
 
 
@@ -91,7 +91,6 @@ def pieChartAdmis(v): # graph des etudiants admis/non admis
             autopct='%1.1f%%', shadow=True, startangle=90)
 
     plt.axis('equal')
-    # plt.savefig('PieChart01.png')
     plt.show()
     plt.close()
 
@@ -111,7 +110,7 @@ def pieChartNotes(notes): # graph des notes d'un etudiant
 
 
 
-#-------------------------------------------------------------------------------
+#%%
 
 
 
@@ -185,7 +184,7 @@ def pcz(L,l='XP',text=True):
 
 
 
-#-------------------------------------------------------------------------------
+#%%
 
 
 
@@ -226,14 +225,14 @@ def plot3d(v,l,C):
     plt.close()
 
 
-#-------------------------------------------------------------------------------
+#%%
 
 
 
 
 
 if __name__ == "__main__":
-    from data import Valide as V,XPt,note,notelog,noteinv,notecarre,XPmaxe
+    from data import Valide as V,XPt,note,notelog,noteinv,notecarre,XPmaxe,MaxXP
     
     
     XPt = f(V,XPt)
@@ -244,24 +243,24 @@ if __name__ == "__main__":
     
     
     
-    """
+    
     pcz(XPt,'XP',False)
     pcz(note,'Modele Lineaire',False)
     pcz(notelog,'Modele Log',False)
     pcz(noteinv,'Modele Inverse',False)
-    """
+    
     
     
     #pcz(notecarre,'Modele racine carré')
     
     
-    """
+    
     someinfo(zip(note)[1])
     someinfo(zip(notelog)[1])
     someinfo(zip(noteinv)[1])
     someinfo(zip(notecarre)[1])
-    """
     
+    print(MaxXP)
     plot3d(V,removefirst(XPmaxe),[e[3] for e in XPmaxe])
     
     

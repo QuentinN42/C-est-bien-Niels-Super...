@@ -14,7 +14,10 @@ noteinv   : tableau 2D    : note /20 par eleves modele inverse : [[e1,12],[e2,15
 notecarre : tableau 2D    : note /20 par eleves modele sqrt    : [[e1,12],[e2,15]...]
 
 """
-# imports ----------------------------------------------------------------------
+
+
+#%%
+# imports
 import csv
 from math import log,sqrt,pow
 
@@ -25,24 +28,24 @@ with open('PrenomsRandom.txt', 'r') as f:
     prenoms = [x[0] for x in list(reader)]
 
 
-#-------------------------------------------------------------------------------
+#%%
 
 data = list(csv.reader(open('./donnee.txt', 'r')))
 #prenoms = open('./Prenoms.txt', 'r').read().split("\n")
 
-#-------------------------------------------------------------------------------
+#%%
 # supression entete dans les donnees + formatage xp maximum par UE
 
 entete = data.pop(0)
 MaxXP = [int(float(entete[i])) for i in range(len(entete)-1)]
 
 
-#-------------------------------------------------------------------------------
+#%%
 # formatage des donnees en int
 
 data = [list(map(lambda x: int(float(x)),d)) for d in data]
 
-#-------------------------------------------------------------------------------
+#%%
 # creation des xp de chaques etudiants
 
 XP = [[i] + data[i][:-1] for i in range(len(data))]
@@ -52,7 +55,7 @@ XP2 = [[i,data[i][1]] for i in range(len(data))]
 XP3 = [[i,data[i][2]] for i in range(len(data))]
 XP4 = [[i,data[i][3]] for i in range(len(data))]
 
-#-------------------------------------------------------------------------------
+#%%
 # maxing des etudiants
 
 XPmaxe = []
@@ -74,7 +77,7 @@ XPm1 = [[i,XPmaxe[i][1]] for i in range(len(data))]
 XPm2 = [[i,XPmaxe[i][2]] for i in range(len(data))]
 XPm3 = [[i,XPmaxe[i][3]] for i in range(len(data))]
 XPm4 = [[i,XPmaxe[i][4]] for i in range(len(data))]
-#-------------------------------------------------------------------------------
+#%%
 # creation des modeles
 
 
@@ -90,7 +93,7 @@ minv = lambda x : 116.36*x/(1000 + 4*x)
 mcarre = lambda x : 20*pow(x/sum(MaxXP),0.55)
 
 
-#-------------------------------------------------------------------------------
+#%%
 # creation de la note sur 20 de chaques étudiants en fonction des modeles
 
 
@@ -101,13 +104,13 @@ notecarre = [[e[0],mcarre(e[1])]for e in XPt]
 
 
 
-#-------------------------------------------------------------------------------
+#%%
 # creation des validation de chaques etudiants
 
 Valide = [True if data[i][-1] == 1 else False for i in range(len(data))]
 
 
-#-------------------------------------------------------------------------------
+#%%
 # affichage si le prg est executé seul (ne pas en tenir compte)
 
 if __name__ == "__main__":

@@ -20,20 +20,49 @@ $lnbrcontroles = $s . "nbrcontroles.txt";
 
 
 $lnom   = $l . "/prenom.txt";
+$lcitationperso = $l . "/citation.txt";
 
 
 
-$lxps   = $l . "/xp";
-$lxp1 = $lxp1 . "1.txt";
-$lxp2 = $lxp2 . "2.txt";
-$lxp3 = $lxp3 . "3.txt";
-$lxp4 = $lxp4 . "4.txt";
+$lxp   = $l . "/xp";
+$lxp1 = $lxp . "1.txt";
+$lxp2 = $lxp . "2.txt";
+$lxp3 = $lxp . "3.txt";
+$lxp4 = $lxp . "4.txt";
 
 
 $lnotelin = $l . "/note.txt";
 $lnotelog = $l . "/notel.txt";
 $lnoteinv = $l . "/notei.txt";
 $lnotecar = $l . "/notec.txt";
+
+// XP
+
+$fxp1 = fopen($lxp1, "r");
+$xp1 = fread($fxp1,filesize($lxp1));
+fclose($fxp1);
+
+$fxp2 = fopen($lxp2, "r");
+$xp2 = fread($fxp2,filesize($lxp2));
+fclose($fxp2);
+
+$fxp3 = fopen($lxp3, "r");
+$xp3 = fread($fxp3,filesize($lxp3));
+fclose($fxp3);
+
+$fxp4 = fopen($lxp4, "r");
+$xp4 = fread($fxp4,filesize($lxp4));
+fclose($fxp4);
+
+
+
+
+
+$fcitationperso = fopen($lcitationperso, "r");
+$citationperso = utf8_encode(fread($fcitationperso,filesize($lcitationperso)));
+fclose($fcitationperso);
+
+
 
 
 
@@ -90,6 +119,44 @@ $fnbrcontroles = fopen($lnbrcontroles, "r");
 $nbrcontroles = fread($fnbrcontroles,filesize($lnbrcontroles));
 fclose($fnbrcontroles);
 
+
+if((float)$note<10)
+{
+    $fond = "\"img/fond_moins_10.jpg\"";
+    $lcitationsnote = "citations_moins_10.txt";
+}
+elseif((float)$note<13)
+{
+    $fond = "\"img/fond_10-13.jpg\"";
+    $lcitationsnote = "citations_10-13.txt";
+}
+elseif((float)$note<16)
+{
+    $fond = "\"img/fond_13-16.jpg\"";
+    $lcitationsnote = "citations_13-16.txt";
+}
+else
+{
+    $fond = "\"img/fond_plus_16.jpg\"";
+    $lcitationsnote = "citations_plus_16.txt";
+}
+
+$fcitationsnote = fopen($lcitationsnote, "r");
+$citationsnote = utf8_encode(fread($fcitationsnote,filesize($lcitationsnote)));
+fclose($fcitationsnote);
+
+
+$citationsnote = explode("\n",$citationsnote);
+
+$r = random_int(0,5);
+
+
+$citationnote = $citationsnote[3*$r]."<br>".$citationsnote[3*$r+1];
+
+
+
+
+
 ?>
 
 
@@ -99,12 +166,55 @@ fclose($fnbrcontroles);
     <head>
 		<link rel="shortcut icon" type="image/png" href="img/logo.png"/>
 		<link rel="stylesheet" type="text/css" href="notes.css">
-		<meta http-equiv= "content-type" content= "text/html; charset=UTF-8" >
+		<meta http-equiv= "content-type" content= "text/html; charset=utf-8" >
         <title> Institut Villebon Charpak </title>
         <script src="notes.js"></script>
+        <style media="screen">
+            .content{background-image: url(<?php echo $fond ?>);}
+        </style>
     </head>
 
     <body onresize="changeHeight()" onload="changeHeight()" onscroll="hidemain()">
+
+
+        <div class="content" id="content">
+            <h1 class="titre">
+                <center>
+                    Bonjour <?php echo $nom; ?>
+                </center>
+            </h1>
+            <div class="blockgauche">
+                <br>
+                <div class="noteglobale">
+                    <p>
+                        Votre note est pour l'instant de : <?php echo $note; ?> /20. <br>
+                        Il reste normalement encore <?php echo $nbrcontroles; ?> contrôles pour augmenter votre note. <br>
+                    </p>
+                </div>
+                <br><br>
+                <div class="rankxp">
+                    <p>
+                        Voici vos XPs : <br>
+                        Theme 1 : <?php echo $xp1; ?> <br>
+                        Theme 2 : <?php echo $xp2; ?> <br>
+                        Theme 3 : <?php echo $xp3; ?> <br>
+                        Theme 4 : <?php echo $xp4; ?> <br>
+                    </p>
+                </div>
+                <br><br>
+                <div class="citationPerso">
+                    <?php echo $citationperso ?>
+                </div>
+                <br>
+            </div>
+            <div class="graphs">
+
+            </div>
+            <br>
+            <div class="citationNote">
+                <?php echo $citationnote ?>
+            </div>
+        </div>
         <div class="main" id="main">
             <img class="bg" src="img/bg.jpg" alt="Institut Villebon Charpak">
                 <div class="title">
@@ -116,27 +226,6 @@ fclose($fnbrcontroles);
                     </h2>
                 </div>
         </div>
-
-        <h1>
-            <center>
-                Bonjour <?php echo $nom; ?>
-            </center>
-        </h1>
-        <div class="content" id="content">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <br><br>
-            <p>
-                Votre note est pour l'instant de : <?php echo $note; ?> /20. <br>
-                Il reste normalement encore <?php echo $nbrcontroles; ?> contrôles pour augmenter votre note. <br>
-            </p>
-
-            <br><br>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-        </div>
-
+                <br>
     </body>
 </html>

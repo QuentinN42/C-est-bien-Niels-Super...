@@ -4,6 +4,6 @@ This is just a bad one, {NAME}
 Stay determined!#
 Wake up {NAME},  It's not over!
 Stay determined#
-Please {NAME},  don't give up just yet!# 
+Please {NAME},  don't give up just yet!#
 You're going to be alright! {NAME}
 Stay determined!
