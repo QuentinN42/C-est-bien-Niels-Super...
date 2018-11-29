@@ -144,7 +144,7 @@ def plotColor(v,D,l='XP',text=True):
     plt.plot([0,100],[min(valide),min(valide)], '--g')
     #plt.plot([0,100],[10,10], '--b')
     plt.show()
-    plt.savefig("./Data/Prof/" + l.replace(" ","_") + ".png")
+    #plt.savefig("./Data/Prof/" + l.replace(" ","_") + ".png")
     if text:
         print("Echec / Reussite : ",read(max(nonvalide))," --- ",read(min(valide)))
         someinfo(D,l)
@@ -198,12 +198,6 @@ def plot3d(v,l,C):
     
     c = [to_hex((1-(e-min(C))/(max(C)-min(C)),(e-min(C))/(max(C)-min(C)),0)) for e in C]
     
-    nrx = [x[i] for i in range(len(l)) if v[i] is not True]
-    nry = [y[i] for i in range(len(l)) if v[i] is not True]
-    nrz = [z[i] for i in range(len(l)) if v[i] is not True]
-    nrC = [C[i] for i in range(len(c)) if v[i] is not True]
-    nrc = [to_hex((1-(e-min(nrC))/(max(nrC)-min(nrC)),(e-min(nrC))/(max(nrC)-min(nrC)),0)) for e in nrC]
-    
     for i in range(len(v)):
         if v[i]:
             f = 'o'
@@ -213,8 +207,12 @@ def plot3d(v,l,C):
     
     plt.show()
     plt.savefig("./Data/Prof/3D.png")
-    
     """
+    nrx = [x[i] for i in range(len(l)) if v[i] is not True]
+    nry = [y[i] for i in range(len(l)) if v[i] is not True]
+    nrz = [z[i] for i in range(len(l)) if v[i] is not True]
+    nrC = [C[i] for i in range(len(c)) if v[i] is not True]
+    nrc = [to_hex((1-(e-min(nrC))/(max(nrC)-min(nrC)),(e-min(nrC))/(max(nrC)-min(nrC)),0)) for e in nrC]
     fig = plt.figure()
     ax = Axes3D(fig)
     

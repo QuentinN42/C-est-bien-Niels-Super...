@@ -1,7 +1,7 @@
 html body {
 	height: 100%;
     font-size: 18px;
-	font-family: "Corsiva", Times, serif;
+	/*font-family: "Corsiva", Times, serif;*/
 }
 
 
@@ -84,7 +84,7 @@ big
     border-radius: 25px;
 	background-color: rgba(128,128,128,0.5);
   	transform: translate(0%, 20%);
-	width: 45%;
+	width: 35%;
 }
 
 .rankxp{
@@ -118,14 +118,15 @@ big
     border-radius: 25px;
 	background-color: rgba(128,128,128,0.8);
   	transform: translate(0%, 0%);
-	width: 45%;
+	width: 35%;
 }
 
 .graphs{
+	padding: 25px;
 	position: absolute;
 	margin-left: 50%;
 	margin-top: 5%;
-	width: 45%;
+	width: 35%;
     border-radius: 25px;
 	background-color: rgba(128,128,128,0.5);
 }
