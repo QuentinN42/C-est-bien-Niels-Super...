@@ -38,12 +38,15 @@ def column(matrix, i):
 
 
 def moy(l): #renvoie la moyenne d'une liste
-    return sum(l)/len(l)
+    s=0
+    for i in l:
+        s+=i
+    return s/len(l)
 
-def ecart_type(l): #renvoie l'écart type d'une liste
+
+def ecart_type(l): #renvoie l'ecart type d'une liste
     e=0
     m=moy(l)
-    # tu peut calculer la moyenne ici tu la calcule une seule fois donc ca vas plus vite :)
     for i in l:
         e+=(i-m)**2
     return np.sqrt(e/len(l))
@@ -94,7 +97,7 @@ def G_nb_XP(nom,xp,prenoms):
 
 
 
-    plt.savefig('./Data/' + str(prenoms.index(nom)) + '/hist.png')
+    #plt.savefig('./Data/' + str(prenoms.index(nom)) + '/hist.png')
     #plt.show()
     plt.close()
 
@@ -102,7 +105,7 @@ def G_nb_XP(nom,xp,prenoms):
 
 #                           AVANCEMENT COMPETITIF / RIVAUX
 
-def plotbarlist(x,y,c,nom): #pour faciliter le code plus bas
+def plotbarlist(x,y,c,nom,p): #pour faciliter le code plus bas
     fig = plt.figure()
     ax = fig.add_subplot(111)
     ax.set_xlabel(' The competitive graph ')
@@ -117,8 +120,8 @@ def plotbarlist(x,y,c,nom): #pour faciliter le code plus bas
     plt.bar(x[2], y[2][1], color=c[2])
     plt.bar(x[3], y[3][1], color=c[3])
     plt.bar(x[4], y[4][1], color=c[4])
-    plt.show()
-    plt.savefig('./Data/' + str(dt.prenoms.index(nom)) + '/hist_comp.png')
+    #plt.show()
+    plt.savefig('./Data/' + str(p.index(nom)) + '/hist_comp.png')
     plt.close()
 
 
@@ -135,35 +138,35 @@ def G_position(nom, xp, prenom):
         c = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 2]
         d = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 1]
         e = mat.clasmt_thm(xp, 1)[prenom.index(nom)]
-        plotbarlist(['-4', '-3', '-2', '-1', 'ME'], [a, b, c, d, e], ['g', 'g', 'g', 'g', 'b'],nom)
+        plotbarlist(['-4', '-3', '-2', '-1', 'ME'], [a, b, c, d, e], ['g', 'g', 'g', 'g', 'b'],nom,prenom)
     elif numero == 1 :
         a = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 3]
         b = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 2]
         c = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 1]
         d = mat.clasmt_thm(xp, 1)[prenom.index(nom)]
         e = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 1]
-        plotbarlist(['-3', '-2', '-1', 'ME', '+1'], [a, b, c, d, e], ['g', 'g', 'g', 'b', 'r'],nom)
+        plotbarlist(['-3', '-2', '-1', 'ME', '+1'], [a, b, c, d, e], ['g', 'g', 'g', 'b', 'r'],nom,prenom)
     elif numero == 98 :
         a = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 1 ]
         b = mat.clasmt_thm(xp, 1)[prenom.index(nom)]
         c = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 1 ]
         d = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 2 ]
         e = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 3 ]
-        plotbarlist(['-1', 'ME', '+1', '+2', '+3'], [a, b, c, d, e], ['g', 'b', 'r', 'r', 'r'],nom)
+        plotbarlist(['-1', 'ME', '+1', '+2', '+3'], [a, b, c, d, e], ['g', 'b', 'r', 'r', 'r'],nom,prenom)
     elif numero == 99 :
         a = mat.clasmt_thm(xp, 1)[prenom.index(nom)]
         b = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 1]
         c = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 2]
         d = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 3]
         e = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 4]
-        plotbarlist(['ME', '+1', '+2', '+3', '+4'], [a, b, c, d, e], ['b', 'r', 'r', 'r', 'r'],nom)
+        plotbarlist(['ME', '+1', '+2', '+3', '+4'], [a, b, c, d, e], ['b', 'r', 'r', 'r', 'r'],nom,prenom)
     else :
         a = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 2]
         b = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 1]
         c = mat.clasmt_thm(xp, 1)[prenom.index(nom)]
         d = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 1]
         e = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 2]
-        plotbarlist(['-2', '-1', 'ME', '+1', '+2'], [a, b, c, d, e], ['g', 'g', 'b', 'r', 'r'],nom)
+        plotbarlist(['-2', '-1', 'ME', '+1', '+2'], [a, b, c, d, e], ['g', 'g', 'b', 'r', 'r'],nom,prenom)
 
 
 
@@ -187,10 +190,11 @@ def G_alldata(xp):
     plt.plot(['t1', 't2', 't3', 't4'],Q[:,0], 'b^', markersize=10 )
     plt.plot(['t1', 't2', 't3', 't4'],Q[:,1], 'ro', markersize=10 )  #   ajouter moyene :/
     plt.plot(['t1', 't2', 't3', 't4'],Q[:,2], 'bv', markersize=10)
+
     for u in range(len(xp)):
         plt.plot(['t1', 't2', 't3', 't4'], y[u], 'k+')
     plt.show()
-    plt.savefig('./Data/Prof/hist_comp.png')
+    plt.savefig('./Data/Prof/repartXP.png')
     plt.close()
 
 #Xp total par élève dans l'ordre croissant
@@ -218,9 +222,10 @@ def G_xptot(xpt,prenoms):
 if __name__ == "__main__":
     import data as dt
     G_alldata(dt.XP)
-    G_xptot(dt.XPt,dt.prenoms)
-    #for i in dt.prenoms:
-    #   G_nb_XP(i, dt.XP, dt.prenoms)
+    #G_xptot(dt.XPt,dt.prenoms)
+    #for i in range(len(dt.prenoms)) :
+     #   G_position(dt.prenoms[i], dt.XP, dt.prenoms)
+
 
 
 
