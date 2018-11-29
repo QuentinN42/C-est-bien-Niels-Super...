@@ -74,10 +74,10 @@ def quartiles(l): #renvoie un triplet de la forme (1er quartile, médiane, 3ièm
 
 #nombre d'xp par ue /eleve:
 
-def G_nb_XP(nom,xp,prenoms):
+def G_nb_XP(nom,xp,xpm,prenoms,MAXs): # MAXs est une liste des maximuns d'XP par thèmes
     x = ['t1','t2','t3','t4']
-    y = xp[prenoms.index(nom)][1:]
-    y_max = dt.XPmaxe[prenoms.index(nom)][1:]
+    y = xp[prenoms.index(nom)][1:] # on recupere un quadruplet [xp1,xp2,xp3,xp4] (=sans 'e1','e2',...)
+    y_max = xpm[prenoms.index(nom)][1:]# même chose mais avec l'xp maxé
     M1=moy(column(dt.XP1,1))
     M2=moy(column(dt.XP2,1))
     M3=moy(column(dt.XP3,1))
@@ -90,83 +90,81 @@ def G_nb_XP(nom,xp,prenoms):
     ax.set_xlabel('theme ')
     ax.set_ylabel(' XP ')
     plt.legend(handles=[blue_patch,black_patch])
-    plt.bar(x,y,color='k')
-    plt.bar(x,y_max,color='b')
-    plt.plot(x, [50,100,100,200], 'rv', markersize=10)
+    plt.bar(x,y,color='k') # on plot l'xp non maxe en noir
+    plt.bar(x,y_max,color='b') # on plot par dessus l'xp maxe en vert, si xpmaxe!=xp, l'xp en trop depasse en noir.
+    plt.plot(x, MAXs, 'rv', markersize=10)
     plt.plot(x,[M1,M2,M3,M4], 'r_', markersize=40)
 
 
 
-    #plt.savefig('./Data/' + str(prenoms.index(nom)) + '/hist.png')
-    #plt.show()
+    plt.savefig('./Data/' + str(prenoms.index(nom)) + '/hist.png')
+    plt.show()
     plt.close()
 
 
 
 #                           AVANCEMENT COMPETITIF / RIVAUX
 
-def plotbarlist(x,y,c,nom,p): #pour faciliter le code plus bas
+def plotbarlist(x,y,c,nom,liste_prenoms): #pour faciliter le code plus bas
     fig = plt.figure()
     ax = fig.add_subplot(111)
     ax.set_xlabel(' The competitive graph ')
     ax.set_ylabel(' XP total ')
-    ax.set_ylim(y[0][1]-10, y[4][1]+10)
+    ax.set_ylim(y[0]-10, y[4]+10)
     blue_patch = mpatches.Patch(color='blue', label='you')
     red_patch = mpatches.Patch(color='red', label='you re not that far')
     green_patch = mpatches.Patch(color='green', label='you ve beaten them !')
     plt.legend(handles=[blue_patch, red_patch,green_patch])
-    plt.bar(x[0], y[0][1], color=c[0])
-    plt.bar(x[1], y[1][1], color=c[1])
-    plt.bar(x[2], y[2][1], color=c[2])
-    plt.bar(x[3], y[3][1], color=c[3])
-    plt.bar(x[4], y[4][1], color=c[4])
+    plt.bar(x, y, color=c)
     #plt.show()
-    plt.savefig('./Data/' + str(p.index(nom)) + '/hist_comp.png')
+    plt.savefig('./Data/' + str(liste_prenoms.index(nom)) + '/hist_comp.png')
     plt.close()
 
 
 
 
-def G_position(nom, xp, prenom):
-
-    n=len(prenom)
-    numero = prenom.index(nom)
-    print(mat.clasmt_thm(xp, 1)[prenom.index(nom)][1])
+def G_position(nom, xp, liste_prenom):
+    n=len(liste_prenom)
+    indice=liste_prenom.index(nom)
+    xp_ord_avind= mat.clasmt_thm(xp,1)
+    numero = xp_ord_avind.index([indice,xp[indice][1]])
+    xp_ord=column(xp_ord_avind,1)
+    print(numero)
     if numero == 0 :
-        a = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 4]
-        b = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 3]
-        c = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 2]
-        d = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 1]
-        e = mat.clasmt_thm(xp, 1)[prenom.index(nom)]
-        plotbarlist(['-4', '-3', '-2', '-1', 'ME'], [a, b, c, d, e], ['g', 'g', 'g', 'g', 'b'],nom,prenom)
+        a = xp_ord[numero + 4]
+        b = xp_ord[numero + 3]
+        c = xp_ord[numero + 2]
+        d = xp_ord[numero + 1]
+        e = xp_ord[numero]
+        plotbarlist(['-4', '-3', '-2', '-1', 'ME'], [a, b, c, d, e], ['g', 'g', 'g', 'g', 'b'],nom,liste_prenom)
     elif numero == 1 :
-        a = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 3]
-        b = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 2]
-        c = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 1]
-        d = mat.clasmt_thm(xp, 1)[prenom.index(nom)]
-        e = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 1]
-        plotbarlist(['-3', '-2', '-1', 'ME', '+1'], [a, b, c, d, e], ['g', 'g', 'g', 'b', 'r'],nom,prenom)
-    elif numero == 98 :
-        a = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 1 ]
-        b = mat.clasmt_thm(xp, 1)[prenom.index(nom)]
-        c = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 1 ]
-        d = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 2 ]
-        e = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 3 ]
-        plotbarlist(['-1', 'ME', '+1', '+2', '+3'], [a, b, c, d, e], ['g', 'b', 'r', 'r', 'r'],nom,prenom)
-    elif numero == 99 :
-        a = mat.clasmt_thm(xp, 1)[prenom.index(nom)]
-        b = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 1]
-        c = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 2]
-        d = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 3]
-        e = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 4]
-        plotbarlist(['ME', '+1', '+2', '+3', '+4'], [a, b, c, d, e], ['b', 'r', 'r', 'r', 'r'],nom,prenom)
+        a = xp_ord[numero + 3]
+        b = xp_ord[numero + 2]
+        c = xp_ord[numero + 1]
+        d = xp_ord[numero]
+        e = xp_ord[numero - 1]
+        plotbarlist(['-3', '-2', '-1', 'ME', '+1'], [a, b, c, d, e], ['g', 'g', 'g', 'b', 'r'],nom,liste_prenom)
+    elif numero == n-2 :
+        a = xp_ord[numero + 1 ]
+        b = xp_ord[numero]
+        c = xp_ord[numero - 1 ]
+        d = xp_ord[numero - 2 ]
+        e = xp_ord[numero - 3 ]
+        plotbarlist(['-1', 'ME', '+1', '+2', '+3'], [a, b, c, d, e], ['g', 'b', 'r', 'r', 'r'],nom,liste_prenom)
+    elif numero == n-1 :
+        a = xp_ord[numero]
+        b = xp_ord[numero - 1]
+        c = xp_ord[numero - 2]
+        d = xp_ord[numero - 3]
+        e = xp_ord[numero - 4]
+        plotbarlist(['ME', '+1', '+2', '+3', '+4'], [a, b, c, d, e], ['b', 'r', 'r', 'r', 'r'],nom,liste_prenom)
     else :
-        a = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 2]
-        b = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 1]
-        c = mat.clasmt_thm(xp, 1)[prenom.index(nom)]
-        d = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 1]
-        e = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 2]
-        plotbarlist(['-2', '-1', 'ME', '+1', '+2'], [a, b, c, d, e], ['g', 'g', 'b', 'r', 'r'],nom,prenom)
+        a = xp_ord[numero + 2]
+        b = xp_ord[numero + 1]
+        c = xp_ord[numero]
+        d = xp_ord[numero - 1]
+        e = xp_ord[numero - 2]
+        plotbarlist(['-2', '-1', 'ME', '+1', '+2'], [a, b, c, d, e], ['g', 'g', 'b', 'r', 'r'],nom,liste_prenom)
 
 
 
@@ -221,10 +219,13 @@ def G_xptot(xpt,prenoms):
 
 if __name__ == "__main__":
     import data as dt
-    G_alldata(dt.XP)
+    #G_alldata(dt.XP)
     #G_xptot(dt.XPt,dt.prenoms)
-    #for i in range(len(dt.prenoms)) :
-     #   G_position(dt.prenoms[i], dt.XP, dt.prenoms)
+    for i in dt.prenoms:
+        G_position(i,dt.XPt,dt.prenoms)
+
+
+
 
 
 
