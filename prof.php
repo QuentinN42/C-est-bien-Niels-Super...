@@ -67,6 +67,10 @@ $car = $p . "Modele_racine_carre.";
                 </center>
             </h1>
             <div class="block">
+                <h2>Plot des thèmes</h2>
+                    Plot des XPs en fonction des thèmes :<br>
+                    <img src=<?php echo $p."repartXP.png" ?>>
+                    <br><br>
                 <h2>Plot 4D</h2>
                     Plot des XPs en fonction des XPs en fonction des XPs en fonction des XPs :<br>
                     <img src=<?php echo $p."3D.png" ?>>

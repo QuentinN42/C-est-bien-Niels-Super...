@@ -185,16 +185,6 @@ $citationnote = $citationsnote[3*$r]."<br>".$citationsnote[3*$r+1];
                     </p>
                 </div>
                 <br>
-                <div class="rankxp">
-                    <p>
-                        Voici vos XPs : <br>
-                        Theme 1 : <?php echo $xp1; ?> <br>
-                        Theme 2 : <?php echo $xp2; ?> <br>
-                        Theme 3 : <?php echo $xp3; ?> <br>
-                        Theme 4 : <?php echo $xp4; ?> <br>
-                    </p>
-                </div>
-                <br>
                     <center>
                         <img src="<?php echo $l . "/hist.png"; ?>" alt="Hist">
                     </center>
@@ -203,6 +193,15 @@ $citationnote = $citationsnote[3*$r]."<br>".$citationsnote[3*$r+1];
             <div class="graphs">
                 <div class="citationPerso">
                     <?php echo $citationperso ?>
+                </div><br>
+                <div class="rankxp">
+                    <p>
+                        Voici vos XPs : <br>
+                        Theme 1 : <?php echo $xp1; ?> <br>
+                        Theme 2 : <?php echo $xp2; ?> <br>
+                        Theme 3 : <?php echo $xp3; ?> <br>
+                        Theme 4 : <?php echo $xp4; ?> <br>
+                    </p>
                 </div><br>
                 <center>
                     <img src="<?php echo $l . "/hist_comp.png"; ?>" alt="Hist">
