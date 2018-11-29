@@ -184,7 +184,7 @@ $citationnote = $citationsnote[3*$r]."<br>".$citationsnote[3*$r+1];
                         Il reste normalement encore <?php echo $nbrcontroles; ?> contrôles pour augmenter votre note. <br>
                     </p>
                 </div>
-                <br><br>
+                <br>
                 <div class="rankxp">
                     <p>
                         Voici vos XPs : <br>
@@ -194,15 +194,18 @@ $citationnote = $citationsnote[3*$r]."<br>".$citationsnote[3*$r+1];
                         Theme 4 : <?php echo $xp4; ?> <br>
                     </p>
                 </div>
-                <br><br>
-                <div class="citationPerso">
-                    <?php echo $citationperso ?>
-                </div>
+                <br>
+                    <center>
+                        <img src="<?php echo $l . "/hist.png"; ?>" alt="Hist">
+                    </center>
                 <br>
             </div>
             <div class="graphs">
+                <div class="citationPerso">
+                    <?php echo $citationperso ?>
+                </div><br>
                 <center>
-                    <img src="<?php echo $l . "/hist.png"; ?>" alt="Hist">
+                    <img src="<?php echo $l . "/hist_comp.png"; ?>" alt="Hist">
                 </center>
             </div>
             <br>

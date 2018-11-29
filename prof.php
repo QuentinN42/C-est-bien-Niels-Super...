@@ -7,16 +7,45 @@ $lmod = $s . "modele.txt";
 $lnbrcontroles = $s . "nbrcontroles.txt";
 
 
-$fmod = fopen($lmod, "r");
-$mod = fread($fmod,filesize($lmod));
-fclose($fmod);
+
+function read($l){
+    $f = fopen($l, "r");
+    $tmp = fread($f,filesize($l));
+    fclose($f);
+    return $tmp;
+}
+
+function changemod($mod)
+{
+    $fp = fopen("Data/Settings/modele.txt", 'w');
+    fwrite($fp, $mod);
+    fclose($fp);
+}
+
+function changecontroles($n)
+{
+    $fp = fopen("Data/Settings/nbrcontroles.txt", 'w');
+    fwrite($fp, $n);
+    fclose($fp);
+}
+
+if(isset($_POST["mod"]))
+{
+    changemod($_POST["mod"]);
+}
+if(isset($_POST["ctrls"]))
+{
+    changecontroles($_POST["ctrls"]);
+}
+
+
+
+$mod = read($lmod);
 
 $lin = $p . "Modele_Lineaire.";
 $inv = $p . "Modele_Inverse.";
 $log = $p . "Modele_Log.";
 $car = $p . "Modele_racine_carre.";
-
-
 
 ?>
 
@@ -34,14 +63,50 @@ $car = $p . "Modele_racine_carre.";
         <div class="content" id="content">
             <h1 class="titre">
                 <center>
-                    Bonjour Maitre
+                    Bonjour Maître
                 </center>
             </h1>
             <div class="block">
-                <h3>Modeles</h3>
-                    <h6>Modele linéaire</h6>
+                <h2>Plot 4D</h2>
+                    Plot des XPs en fonction des XPs en fonction des XPs en fonction des XPs :<br>
+                    <img src=<?php echo $p."3D.png" ?>>
+                    <br><br>
+                <h2>Modeles</h2>
+                    <h3>Modele linéaire</h3>
                     <img src=<?php echo $lin."png" ?>>
-                    <?php  ?>
+                    <br>
+                    <?php echo read($lin."txt") ?>
+                    <br><br>
+
+                    <h3>Modele logarithmique</h3>
+                    <img src=<?php echo $log."png" ?>>
+                    <br>
+                    <?php echo read($log."txt") ?>
+                    <br><br>
+
+                    <h3>Modele inverse</h3>
+                    <img src=<?php echo $inv."png" ?>>
+                    <br>
+                    <?php echo read($inv."txt") ?>
+                    <br><br>
+
+                    <h3>Modele racine carré</h3>
+                    <img src=<?php echo $car."png" ?>>
+                    <br>
+                    <?php echo read($car."txt") ?>
+                    <br><br>
+                <h2>Changement de modèle</h2>
+                    <form action="prof.php" method="post">
+                        <input  type="radio" name="mod" value="lin"> Linéaire </button><br>
+                        <input  type="radio" name="mod" value="log" checked> Logarithmique </button><br>
+                        <input  type="radio" name="mod" value="inv"> Inverse </button><br>
+                        <input  type="radio" name="mod" value="car"> Racine carré </button><br>
+                        <button type="submit" name="button"> Valider </button>
+                    </form>
+                    <form action="prof.php" method="post">
+                        <input  type="number" name="ctrls" value="0"><br>
+                        <button type="submit" name="button"> Valider </button>
+                    </form>
             </div>
         </div>
         <div class="main" id="main">

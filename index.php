@@ -8,23 +8,39 @@ if(isset($_POST["login"]))
 	$l = $_POST["login"];
 	$p = $_POST["password"];
 	$h = hash("sha256",$p);
-	for($i = 0; $i < 100; ++$i)
+	if($l == "Prof")
 	{
-		$e = "eleve" . (string)$i;
-		if($l == $e)
+		$l = "pass/Prof.txt";
+		$f = fopen($l, "r");
+		$H = fread($f,filesize($l));
+		fclose($f);
+		if($h == $H)
 		{
-			$l = "pass/" . $e . ".txt";
-			$f = fopen($l, "r");
-			$H = fread($f,filesize($l));
-			fclose($f);
-			if($h == $H)
+			header("Location: prof.php");
+			die();
+		}
+	}
+	else
+	{
+		for($i = 0; $i < 100; ++$i)
+		{
+			$e = "eleve" . (string)$i;
+			if($l == $e)
 			{
-				$_SESSION["eleve"] = $i;
-				header("Location: notes.php");
-				die();
+				$l = "pass/" . $e . ".txt";
+				$f = fopen($l, "r");
+				$H = fread($f,filesize($l));
+				fclose($f);
+				if($h == $H)
+				{
+					$_SESSION["eleve"] = $i;
+					header("Location: notes.php");
+					die();
+				}
 			}
 		}
 	}
+
 	$m = "<h3>Wrong login or password</h3>";
 }
 else
