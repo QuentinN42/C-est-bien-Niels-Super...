@@ -114,7 +114,8 @@ Valide = [True if data[i][-1] == 1 else False for i in range(len(data))]
 # affichage si le prg est executé seul (ne pas en tenir compte)
 
 if __name__ == "__main__":
-    print("")
+    for n in notelog:
+        print(n[0],int(n[1]))
     
     
 

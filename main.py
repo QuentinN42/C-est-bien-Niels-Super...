@@ -11,6 +11,7 @@ for i in range (100):
         f.write(dt.prenoms[i])
 
 
+r = lambda x: int(100*x)/100
 
 
 
@@ -31,19 +32,19 @@ for i in range (100):
         f.write(w)
     
     with open(llin, 'w') as f:
-        w = str(dt.note[i][1])
+        w = str(r(dt.note[i][1]))
         f.write(w)
     
     with open(llog, 'w') as f:
-        w = str(dt.notelog[i][1])
+        w = str(r(dt.notelog[i][1]))
         f.write(w)
     
     with open(linv, 'w') as f:
-        w = str(dt.noteinv[i][1])
+        w = str(r(dt.noteinv[i][1]))
         f.write(w)
     
     with open(lcarre, 'w') as f:
-        w = str(dt.notecarre[i][1])
+        w = str(r(dt.notecarre[i][1]))
         f.write(w)
     
     
@@ -56,7 +57,7 @@ for i in range (100):
                 w += chx([c.replace("\n","<br>") for c in open("citations de game_over.txt",'r').read().split("#\n")]).format(NAME = dt.prenoms[i])
                 w += " <br> \n"
             elif dt.XP[i][j] > dt.MaxXP[j-1]:
-                w += "Décidément, le thème " + str(j) + " n’as plus aucun mystères pour toi ! <big>OVERKILL</big>"
+                w += "Décidément, le thème " + str(j) + " n’as plus aucun mystères pour toi ! <big>OVERKILL</big><br>"
         f.write(w)
     
     

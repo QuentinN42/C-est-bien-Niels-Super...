@@ -147,7 +147,6 @@ def plotColor(v,D,l='XP',text=True):
     if text:
         print("Echec / Reussite : ",read(max(nonvalide))," --- ",read(min(valide)))
         someinfo(D)
-    plt.close()
 
 
 def plotEcTColor(v,D,l='Ecart Type',text=True):
@@ -175,7 +174,6 @@ def plotEcTColor(v,D,l='Ecart Type',text=True):
     plt.show()
     if text:
         print(max(nonvalide)," --- ",min(valide))
-    plt.close()
 
 
 def pcz(L,l='XP',text=True):
@@ -213,7 +211,6 @@ def plot3d(v,l,C):
         ax.plot([x[i]], [y[i]], [z[i]], f, color = c[i])
     
     plt.show()
-    plt.close()
     
     fig = plt.figure()
     ax = Axes3D(fig)
@@ -222,7 +219,6 @@ def plot3d(v,l,C):
         ax.plot([nrx[i]], [nry[i]], [nrz[i]], '^', color = nrc[i])
     
     plt.show()
-    plt.close()
 
 
 #%%
@@ -242,7 +238,7 @@ if __name__ == "__main__":
     notecarre = f(V,notecarre)
     
     
-    
+    print(notelog)
     
     pcz(XPt,'XP',False)
     pcz(note,'Modele Lineaire',False)
