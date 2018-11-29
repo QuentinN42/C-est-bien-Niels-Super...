@@ -116,11 +116,11 @@ def pieChartNotes(notes): # graph des notes d'un etudiant
 
 
 
-def someinfo(D):
-    print("Moyenne          : ",read(moy(D)))
-    print("Ecart type       : ",read(et(D)))
-    print("Min / Max        : ",read(min(D))," --- ",read(max(D)))
-    print("Q1 / M / Q3      : ",tuple(map(read,Q(D))))
+def someinfo(D,name):
+    O = "Moyenne          : " + str(read(moy(D))) + "<br>Ecart type       : " + str(read(et(D))) +  "<br>Min / Max        : " + str(read(min(D))) + " --- " + str(read(max(D))) + "<br>Q1 / M / Q3      : " + str(tuple(map(read,Q(D))))
+    print(O)
+    with open("./Data/Prof/" + name.replace(" ","_") + ".txt", 'w') as f:
+        f.write(O)
 
 
 
@@ -142,11 +142,12 @@ def plotColor(v,D,l='XP',text=True):
         plt.plot(i,D[i], 'o'+c)
     plt.plot([0,100],[max(nonvalide),max(nonvalide)], '--r')
     plt.plot([0,100],[min(valide),min(valide)], '--g')
-    plt.plot([0,100],[10,10], '--b')
+    #plt.plot([0,100],[10,10], '--b')
     plt.show()
+    plt.savefig("./Data/Prof/" + l.replace(" ","_") + ".png")
     if text:
         print("Echec / Reussite : ",read(max(nonvalide))," --- ",read(min(valide)))
-        someinfo(D)
+        someinfo(D,l)
 
 
 def plotEcTColor(v,D,l='Ecart Type',text=True):
@@ -211,15 +212,16 @@ def plot3d(v,l,C):
         ax.plot([x[i]], [y[i]], [z[i]], f, color = c[i])
     
     plt.show()
+    plt.savefig("./Data/Prof/3D.png")
     
+    """
     fig = plt.figure()
     ax = Axes3D(fig)
     
     for i in range(len(nrc)):
         ax.plot([nrx[i]], [nry[i]], [nrz[i]], '^', color = nrc[i])
-    
     plt.show()
-
+    """
 
 #%%
 
@@ -240,22 +242,22 @@ if __name__ == "__main__":
     
     print(notelog)
     
-    pcz(XPt,'XP',False)
-    pcz(note,'Modele Lineaire',False)
-    pcz(notelog,'Modele Log',False)
-    pcz(noteinv,'Modele Inverse',False)
+    pcz(XPt,'XP',True)
+    pcz(note,'Modele Lineaire',True)
+    pcz(notelog,'Modele Log',True)
+    pcz(noteinv,'Modele Inverse',True)
     
     
     
     #pcz(notecarre,'Modele racine carré')
     
     
-    
+    """
     someinfo(zip(note)[1])
     someinfo(zip(notelog)[1])
     someinfo(zip(noteinv)[1])
     someinfo(zip(notecarre)[1])
-    
+    """
     print(MaxXP)
     plot3d(V,removefirst(XPmaxe),[e[3] for e in XPmaxe])
     

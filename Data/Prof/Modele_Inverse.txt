@@ -1,0 +1,1 @@
+Moyenne          : 12.73<br>Ecart type       : 1.79<br>Min / Max        : 7.18 --- 15.47<br>Q1 / M / Q3      : (12.48, 13.14, 13.97)
