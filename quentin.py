@@ -249,7 +249,7 @@ if __name__ == "__main__":
     
     
     
-    #pcz(notecarre,'Modele racine carré')
+    pcz(notecarre,'Modele racine carre')
     
     
     """

@@ -2,6 +2,7 @@
 <html>
 <?php
 $s = "Data/Settings/";
+$p = "Data/Prof/";
 $lmod = $s . "modele.txt";
 $lnbrcontroles = $s . "nbrcontroles.txt";
 
@@ -9,6 +10,13 @@ $lnbrcontroles = $s . "nbrcontroles.txt";
 $fmod = fopen($lmod, "r");
 $mod = fread($fmod,filesize($lmod));
 fclose($fmod);
+
+$lin = $p . "Modele_Lineaire.";
+$inv = $p . "Modele_Inverse.";
+$log = $p . "Modele_Log.";
+$car = $p . "Modele_racine_carre.";
+
+
 
 ?>
 
@@ -30,6 +38,10 @@ fclose($fmod);
                 </center>
             </h1>
             <div class="block">
+                <h3>Modeles</h3>
+                    <h6>Modele linéaire</h6>
+                    <img src=<?php echo $lin."png" ?>>
+                    <?php  ?>
             </div>
         </div>
         <div class="main" id="main">
