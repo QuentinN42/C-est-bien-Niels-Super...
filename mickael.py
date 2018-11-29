@@ -3,6 +3,7 @@ import csv
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+import matthieu as mat
 
 L = list(csv.reader(open('./donnee.txt', 'r')))
 l_test =[5,6,7,2,1,9,8,7,5,2,3,2,8]
@@ -97,6 +98,81 @@ def G_nb_XP(nom,xp,prenoms):
     #plt.show()
     plt.close()
 
+
+
+#                           AVANCEMENT COMPETITIF / RIVAUX
+
+def plotbarlist(x,y,c,nom): #pour faciliter le code plus bas
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    ax.set_xlabel(' The competitive graph ')
+    ax.set_ylabel(' XP total ')
+    ax.set_ylim(y[0][1]-10, y[4][1]+10)
+    blue_patch = mpatches.Patch(color='blue', label='you')
+    red_patch = mpatches.Patch(color='red', label='you re not that far')
+    green_patch = mpatches.Patch(color='green', label='you ve beaten them !')
+    plt.legend(handles=[blue_patch, red_patch,green_patch])
+    plt.bar(x[0], y[0][1], color=c[0])
+    plt.bar(x[1], y[1][1], color=c[1])
+    plt.bar(x[2], y[2][1], color=c[2])
+    plt.bar(x[3], y[3][1], color=c[3])
+    plt.bar(x[4], y[4][1], color=c[4])
+    plt.show()
+    plt.savefig('./Data/' + str(dt.prenoms.index(nom)) + '/hist_comp.png')
+    plt.close()
+
+
+
+
+def G_position(nom, xp, prenom):
+
+    n=len(prenom)
+    numero = prenom.index(nom)
+    print(mat.clasmt_thm(xp, 1)[prenom.index(nom)][1])
+    if numero == 0 :
+        a = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 4]
+        b = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 3]
+        c = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 2]
+        d = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 1]
+        e = mat.clasmt_thm(xp, 1)[prenom.index(nom)]
+        plotbarlist(['-4', '-3', '-2', '-1', 'ME'], [a, b, c, d, e], ['g', 'g', 'g', 'g', 'b'],nom)
+    elif numero == 1 :
+        a = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 3]
+        b = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 2]
+        c = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 1]
+        d = mat.clasmt_thm(xp, 1)[prenom.index(nom)]
+        e = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 1]
+        plotbarlist(['-3', '-2', '-1', 'ME', '+1'], [a, b, c, d, e], ['g', 'g', 'g', 'b', 'r'],nom)
+    elif numero == 98 :
+        a = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 1 ]
+        b = mat.clasmt_thm(xp, 1)[prenom.index(nom)]
+        c = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 1 ]
+        d = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 2 ]
+        e = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 3 ]
+        plotbarlist(['-1', 'ME', '+1', '+2', '+3'], [a, b, c, d, e], ['g', 'b', 'r', 'r', 'r'],nom)
+    elif numero == 99 :
+        a = mat.clasmt_thm(xp, 1)[prenom.index(nom)]
+        b = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 1]
+        c = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 2]
+        d = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 3]
+        e = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 4]
+        plotbarlist(['ME', '+1', '+2', '+3', '+4'], [a, b, c, d, e], ['b', 'r', 'r', 'r', 'r'],nom)
+    else :
+        a = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 2]
+        b = mat.clasmt_thm(xp, 1)[prenom.index(nom) + 1]
+        c = mat.clasmt_thm(xp, 1)[prenom.index(nom)]
+        d = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 1]
+        e = mat.clasmt_thm(xp, 1)[prenom.index(nom) - 2]
+        plotbarlist(['-2', '-1', 'ME', '+1', '+2'], [a, b, c, d, e], ['g', 'g', 'b', 'r', 'r'],nom)
+
+
+
+
+
+
+
+
+
 #L'xp par eleves sur chaque ue
 
 def G_alldata(xp):
@@ -114,6 +190,7 @@ def G_alldata(xp):
     for u in range(len(xp)):
         plt.plot(['t1', 't2', 't3', 't4'], y[u], 'k+')
     plt.show()
+    plt.savefig('./Data/prof/hist_comp.png')
     plt.close()
 
 #Xp total par élève dans l'ordre croissant
@@ -125,6 +202,7 @@ def G_xptot(xpt,prenoms):
     y = [l[i][1] for i in range(len(xpt))]
     fig = plt.figure()
     ax = fig.add_subplot(111)
+
 
     ax.set_xlabel('eleve ')
     ax.set_ylabel(' XP ')
@@ -139,10 +217,11 @@ def G_xptot(xpt,prenoms):
 
 if __name__ == "__main__":
     import data as dt
-    #G_alldata(dt.XP)
-    #G_xptot(dt.XPt,dt.Prenom)
-    for i in dt.prenoms:
-        G_nb_XP(i, dt.XP, dt.prenoms)
+    G_alldata(dt.XP)
+    G_xptot(dt.XPt,dt.prenoms)
+    #for i in dt.prenoms:
+    #   G_nb_XP(i, dt.XP, dt.prenoms)
+
 
 
 
