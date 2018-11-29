@@ -38,12 +38,15 @@ def column(matrix, i):
 
 
 def moy(l): #renvoie la moyenne d'une liste
-    return sum(l)/len(l)
+    s=0
+    for i in l:
+        s+=i
+    return s/len(l)
 
-def ecart_type(l): #renvoie l'écart type d'une liste
+
+def ecart_type(l): #renvoie l'ecart type d'une liste
     e=0
     m=moy(l)
-    # tu peut calculer la moyenne ici tu la calcule une seule fois donc ca vas plus vite :)
     for i in l:
         e+=(i-m)**2
     return np.sqrt(e/len(l))
@@ -94,7 +97,7 @@ def G_nb_XP(nom,xp,prenoms):
 
 
 
-    plt.savefig('./Data/' + str(prenoms.index(nom)) + '/hist.png')
+    #plt.savefig('./Data/' + str(prenoms.index(nom)) + '/hist.png')
     #plt.show()
     plt.close()
 
@@ -217,10 +220,9 @@ def G_xptot(xpt,prenoms):
 
 if __name__ == "__main__":
     import data as dt
-    G_alldata(dt.XP)
-    G_xptot(dt.XPt,dt.prenoms)
-    #for i in dt.prenoms:
-    #   G_nb_XP(i, dt.XP, dt.prenoms)
+    #G_alldata(dt.XP)
+    #G_xptot(dt.XPt,dt.prenoms)
+    G_position(dt.prenoms[5], dt.XP, dt.prenoms)
 
 
 
