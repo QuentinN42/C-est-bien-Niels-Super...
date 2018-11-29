@@ -190,7 +190,7 @@ def G_alldata(xp):
     for u in range(len(xp)):
         plt.plot(['t1', 't2', 't3', 't4'], y[u], 'k+')
     plt.show()
-    plt.savefig('./Data/prof/hist_comp.png')
+    plt.savefig('./Data/Prof/hist_comp.png')
     plt.close()
 
 #Xp total par élève dans l'ordre croissant
