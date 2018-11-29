@@ -148,20 +148,13 @@ fclose($fcitationsnote);
 
 $citationsnote = explode("\n",$citationsnote);
 
-$r = random_int(0,5);
+$r = random_int(0,4);
 
 
 $citationnote = $citationsnote[3*$r]."<br>".$citationsnote[3*$r+1];
 
 
-
-
-
 ?>
-
-
-
-
 
     <head>
 		<link rel="shortcut icon" type="image/png" href="img/logo.png"/>
@@ -208,7 +201,9 @@ $citationnote = $citationsnote[3*$r]."<br>".$citationsnote[3*$r+1];
                 <br>
             </div>
             <div class="graphs">
-
+                <center>
+                    <img src="<?php echo $l . "/hist.png"; ?>" alt="Hist">
+                </center>
             </div>
             <br>
             <div class="citationNote">
